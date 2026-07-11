@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-cream: #FAF7F2;
+  --color-navy: #0F1B2D;
+  --color-navy-light: #1A2D47;
+  --color-text-secondary: #4A5568;
+  --color-gold: #B8893E;
+  --color-gold-light: #E5C68E;
+  --color-success-green: #1F6B4A;
+  --color-card-white: #FFFFFF;
+  --color-border-warm: #E8E2D5;
+  --color-whatsapp: #128C7E;
+  --color-whatsapp-light: #25D366;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-hindi: var(--font-mukta), sans-serif;
+
+  --shadow-card: 0 2px 8px rgba(15, 27, 45, 0.06), 0 8px 24px rgba(15, 27, 45, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(15, 27, 45, 0.08), 0 16px 40px rgba(15, 27, 45, 0.12);
+  --shadow-button: 0 2px 6px rgba(15, 27, 45, 0.10);
+  --shadow-button-hover: 0 4px 12px rgba(15, 27, 45, 0.15);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hindi locale — use Mukta for all text (headings + body) so Hinglish looks uniform */
+body.font-hindi {
+  --font-sans: var(--font-mukta), sans-serif;
+  --font-serif: var(--font-mukta), sans-serif;
+}
+
+/* Page transition */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Gallery scroll snap */
+.gallery-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gallery-scroll > * {
+  scroll-snap-align: start;
+}
+
+/* Accordion */
+details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Gold decorative underline for section headings */
+.gold-underline::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  border-radius: 2px;
+  margin: 12px auto 0;
 }
