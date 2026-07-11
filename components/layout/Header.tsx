@@ -3,8 +3,15 @@ import { useTranslations } from "next-intl";
 import PhoneIcon from "@/components/ui/PhoneIcon";
 import MobileMenu from "./MobileMenu";
 import LanguageToggle from "./LanguageToggle";
+import { telHref, type Contact } from "@/lib/site";
 
-export default function Header({ locale }: { locale: string }) {
+export default function Header({
+  locale,
+  contact,
+}: {
+  locale: string;
+  contact: Contact;
+}) {
   const t = useTranslations("nav");
 
   const navLinks = [
@@ -41,7 +48,7 @@ export default function Header({ locale }: { locale: string }) {
         <div className="flex items-center gap-3">
           <LanguageToggle locale={locale} />
           <a
-            href="tel:+917247400000"
+            href={telHref(contact.phone)}
             className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-navy text-white"
             aria-label={t("callNow")}
           >

@@ -1,23 +1,33 @@
 import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
+import SanityImage from "@/components/ui/SanityImage";
+import { getGallery, pick, type Locale } from "@/sanity/lib/fetch";
 
-export default function GallerySection() {
-  const t = useTranslations("gallery");
-  const locale = useLocale();
+const cameraIcon = (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+    <circle cx="12" cy="13" r="4" />
+  </svg>
+);
 
-  // Show only 4 photos on homepage (will be replaced with Sanity data)
-  const placeholders = Array.from({ length: 4 }, (_, i) => ({
-    id: i,
-    caption: `Class Photo ${i + 1}`,
-  }));
+export default async function GallerySection() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("gallery");
+  const gallery = await getGallery();
 
-  const cameraIcon = (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
-      <circle cx="12" cy="13" r="4" />
-    </svg>
-  );
+  const items =
+    gallery.length > 0
+      ? gallery.slice(0, 4).map((g) => ({
+          id: g._id,
+          image: g.image,
+          caption: pick(g.caption, locale, ""),
+        }))
+      : Array.from({ length: 4 }, (_, i) => ({
+          id: String(i),
+          image: undefined,
+          caption: `Class Photo ${i + 1}`,
+        }));
 
   return (
     <section className="py-16 md:py-20 bg-navy/[0.03]">
@@ -26,29 +36,41 @@ export default function GallerySection() {
 
         {/* Mobile: horizontal scroll */}
         <div className="gallery-scroll flex gap-4 overflow-x-auto pb-4 md:hidden -mx-4 px-4">
-          {placeholders.map((item) => (
-            <div
-              key={item.id}
-              className="shrink-0 w-72 aspect-[4/3] rounded-2xl bg-border-warm/50 flex items-center justify-center"
-            >
-              <span className="text-text-secondary/50 text-sm">{item.caption}</span>
+          {items.map((item) => (
+            <div key={item.id} className="shrink-0 w-72">
+              <SanityImage
+                source={item.image}
+                alt={item.caption}
+                width={288}
+                height={216}
+                sizes="288px"
+                className="w-72 aspect-[4/3] rounded-2xl object-cover"
+                placeholderLabel={item.caption}
+              />
             </div>
           ))}
         </div>
 
         {/* Desktop: grid */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {placeholders.map((item) => (
+          {items.map((item) => (
             <div
               key={item.id}
-              className="aspect-[4/3] rounded-2xl bg-border-warm/50 flex items-center justify-center transition-all duration-300 hover:shadow-card hover:-translate-y-1"
+              className="rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-card hover:-translate-y-1"
             >
-              <span className="text-text-secondary/50 text-sm">{item.caption}</span>
+              <SanityImage
+                source={item.image}
+                alt={item.caption}
+                width={400}
+                height={300}
+                sizes="(max-width: 1024px) 50vw, 25vw"
+                className="w-full aspect-[4/3] rounded-2xl object-cover"
+                placeholderLabel={item.caption}
+              />
             </div>
           ))}
         </div>
 
-        {/* View All link */}
         <div className="text-center mt-10">
           <Link
             href={`/${locale}/gallery`}

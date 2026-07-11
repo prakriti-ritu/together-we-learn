@@ -2,8 +2,15 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import PhoneIcon from "@/components/ui/PhoneIcon";
+import { telHref, waHref, type Contact } from "@/lib/site";
 
-export default function Footer({ locale }: { locale: string }) {
+export default function Footer({
+  locale,
+  contact,
+}: {
+  locale: string;
+  contact: Contact;
+}) {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
 
@@ -53,16 +60,16 @@ export default function Footer({ locale }: { locale: string }) {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="tel:+917247400000"
+                  href={telHref(contact.phone)}
                   className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors"
                 >
                   <PhoneIcon className="w-4 h-4" />
-                  +91 7247400000
+                  {contact.phone}
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/917247400000"
+                  href={waHref(contact.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors"
@@ -71,6 +78,20 @@ export default function Footer({ locale }: { locale: string }) {
                   WhatsApp
                 </a>
               </li>
+              {contact.email && (
+                <li>
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors break-all"
+                  >
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="M22 7l-10 6L2 7" />
+                    </svg>
+                    {contact.email}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

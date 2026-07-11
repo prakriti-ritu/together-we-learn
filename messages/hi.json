@@ -23,10 +23,10 @@
     "whatsappButton": "WhatsApp पर बात करें"
   },
   "trust": {
-    "setQualified": "SET Qualified",
-    "govtFaculty": "Govt. College Teacher",
-    "students": "1000+ Students",
-    "experience": "5+ Years Experience"
+    "gold": "M.A. English · Gold Medalist",
+    "set": "CG SET Qualified",
+    "professor": "7 साल Assistant Professor",
+    "trainer": "5 साल Spoken English Trainer"
   },
   "aboutCourse": {
     "heading": "Course के बारे में",
@@ -122,8 +122,15 @@
   "aboutTeacher": {
     "heading": "अपनी Teacher से मिलें",
     "name": "प्रकृति केशरी",
-    "credentials": "SET Qualified | Govt. College Teacher, अंबिकापुर | छत्तीसगढ़",
-    "bio": "प्रकृति केशरी एक SET-Qualified English Teacher हैं जो अभी अंबिकापुर, छत्तीसगढ़ में एक Government College में Faculty हैं। 5+ Years के Teaching Experience और Hindi Medium Students के लिए English Accessible बनाने के Passion के साथ, उन्होंने छोटे शहरों के Students के लिए Language Gap को Bridge करने के लिए 'A Carrier to Career' शुरू किया। उनकी Teaching Method Practical Conversation Skills, Confidence Building और Learning को Enjoyable बनाने पर Focus करती है।"
+    "location": "अंबिकापुर, छत्तीसगढ़",
+    "credentials": [
+      "M.A. English (Gold Medalist)",
+      "CG SET Qualified",
+      "Assistant Professor of English — 7 साल",
+      "Spoken English Trainer — 5 साल",
+      "MSME-Registered Institute"
+    ],
+    "bio": "प्रकृति केशरी M.A. English (Gold Medalist) हैं और CG SET Qualified हैं। उनके पास दो अलग-अलग Experiences हैं: 7 साल Assistant Professor of English के रूप में, और 5 साल Spoken English Trainer के रूप में। उन्होंने 'A Carrier to Career' इसलिए शुरू किया ताकि Hindi Medium Learners English को सिर्फ Translate न करें — बल्कि सही मायने में समझें और Confidence के साथ बोलें। उनकी Method Practical, Real-life Communication, रोज़ की Speaking Practice और उस Confidence पर Focus करती है जो Career के दरवाज़े खोलता है।"
   },
   "faq": {
     "heading": "Frequently Asked Questions",
@@ -170,6 +177,30 @@
     "subheading": "अभी प्रकृति Ma'am को Call करें और आज ही अपनी English Learning Journey शुरू करें।",
     "callButton": "अभी Call करें",
     "whatsappButton": "WhatsApp पर बात करें"
+  },
+  "practice": {
+    "heading": "खुद Try करें",
+    "subheading": "30 सेकंड में देखें कि हम Hindi को कैसे Confident English में बदलते हैं।",
+    "toggle": {
+      "label": "Hindi में सोचें → English में बोलें",
+      "confidence": "Confidence",
+      "transform": "English में बोलें",
+      "showHindi": "सोच दिखाएं",
+      "next": "अगला Example"
+    },
+    "wordFlip": {
+      "tab": "Word Flip",
+      "hint": "Card पर Tap करें और English word और उसका उच्चारण देखें।"
+    },
+    "sentence": {
+      "tab": "Sentence Builder",
+      "hint": "Hindi sentence से match करने के लिए Words को सही order में Tap करें।",
+      "placeholder": "Sentence बनाने के लिए नीचे के Words पर Tap करें…",
+      "check": "Check करें",
+      "correct": "सही!",
+      "tryAgain": "थोड़ा और Try करें।",
+      "next": "अगला"
+    }
   },
   "contact": {
     "heading": "Contact करें",

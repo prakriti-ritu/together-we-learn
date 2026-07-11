@@ -3,6 +3,7 @@ import { HomePageJsonLd } from "@/components/seo/JsonLd";
 import Hero from "@/components/sections/Hero";
 import TrustStrip from "@/components/sections/TrustStrip";
 import AboutCourse from "@/components/sections/AboutCourse";
+import PracticeSection from "@/components/games/PracticeSection";
 import CoursesSection from "@/components/sections/CoursesSection";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import GallerySection from "@/components/sections/GallerySection";
@@ -55,6 +56,7 @@ export default async function HomePage({
       <Hero />
       <TrustStrip />
       <AboutCourse />
+      <PracticeSection />
       <CoursesSection />
       <WhyChooseUs />
       <GallerySection />

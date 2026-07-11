@@ -7,6 +7,7 @@ import { cormorant, jakartaSans, mukta } from "@/lib/fonts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
+import { getContact } from "@/sanity/lib/fetch";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+  const contact = await getContact();
 
   return (
     <html
@@ -41,10 +43,10 @@ export default async function LocaleLayout({
       </head>
       <body className={`min-h-full flex flex-col ${locale === "hi" ? "font-hindi" : ""}`}>
         <NextIntlClientProvider messages={messages}>
-          <Header locale={locale} />
+          <Header locale={locale} contact={contact} />
           <main className="flex-1">{children}</main>
-          <Footer locale={locale} />
-          <MobileStickyBar />
+          <Footer locale={locale} contact={contact} />
+          <MobileStickyBar contact={contact} />
         </NextIntlClientProvider>
       </body>
     </html>

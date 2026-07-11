@@ -1,33 +1,31 @@
-import { useTranslations } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CourseCard from "@/components/ui/CourseCard";
+import { getCourses, getContact, pick, type Locale } from "@/sanity/lib/fetch";
 
-export default function CoursesSection() {
-  const t = useTranslations("courses");
+export default async function CoursesSection() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("courses");
+  const [sanityCourses, contact] = await Promise.all([getCourses(), getContact()]);
 
-  const courses = [
-    {
-      key: "course1",
-      title: t("course1.title"),
-      duration: t("course1.duration"),
-      features: t.raw("course1.features") as string[],
-      isPopular: false,
-    },
-    {
-      key: "course3",
-      title: t("course3.title"),
-      duration: t("course3.duration"),
-      features: t.raw("course3.features") as string[],
-      isPopular: true,
-    },
-    {
-      key: "courseAdv",
-      title: t("courseAdv.title"),
-      duration: t("courseAdv.duration"),
-      features: t.raw("courseAdv.features") as string[],
-      isPopular: false,
-    },
-  ];
+  // Sanity courses if the tutor has added any; otherwise the three seeded
+  // courses from i18n.
+  const courses =
+    sanityCourses.length > 0
+      ? sanityCourses.map((c) => ({
+          key: c._id,
+          title: pick(c.title, locale),
+          duration: pick(c.duration, locale),
+          features: (c.features ?? []).map((f) => pick(f, locale)).filter(Boolean),
+          isPopular: !!c.isPopular,
+        }))
+      : (["course1", "course3", "courseAdv"] as const).map((key) => ({
+          key,
+          title: t(`${key}.title`),
+          duration: t(`${key}.duration`),
+          features: t.raw(`${key}.features`) as string[],
+          isPopular: key === "course3",
+        }));
 
   return (
     <section className="py-16 md:py-20 bg-cream">
@@ -43,7 +41,7 @@ export default function CoursesSection() {
               isPopular={course.isPopular}
               popularLabel={t("mostPopular")}
               enquireLabel={t("enquireWhatsApp")}
-              whatsappNumber="917247400000"
+              whatsappNumber={contact.whatsapp}
               courseName={course.title}
             />
           ))}

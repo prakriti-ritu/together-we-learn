@@ -23,10 +23,10 @@
     "whatsappButton": "Chat on WhatsApp"
   },
   "trust": {
-    "setQualified": "SET Qualified",
-    "govtFaculty": "Govt College Faculty",
-    "students": "1000+ Students",
-    "experience": "5+ Years Experience"
+    "gold": "M.A. English · Gold Medalist",
+    "set": "CG SET Qualified",
+    "professor": "7 Yrs Assistant Professor",
+    "trainer": "5 Yrs Spoken English Trainer"
   },
   "aboutCourse": {
     "heading": "About the Course",
@@ -122,8 +122,15 @@
   "aboutTeacher": {
     "heading": "Meet Your Teacher",
     "name": "Prakriti Keshri",
-    "credentials": "SET Qualified | Government College Faculty, Ambikapur | Chhattisgarh",
-    "bio": "Prakriti Keshri is a SET-qualified English teacher currently serving as faculty at a government college in Ambikapur, Chhattisgarh. With over 5 years of teaching experience and a passion for making English accessible to Hindi-medium students, she founded 'A Carrier to Career' to bridge the language gap for students in tier-3 cities. Her teaching methodology focuses on practical conversation skills, building confidence, and making learning enjoyable."
+    "location": "Ambikapur, Chhattisgarh",
+    "credentials": [
+      "M.A. English (Gold Medalist)",
+      "CG SET Qualified",
+      "Assistant Professor of English — 7 Years",
+      "Spoken English Trainer — 5 Years",
+      "MSME-Registered Institute"
+    ],
+    "bio": "Prakriti Keshri holds an M.A. in English as a Gold Medalist and is CG SET qualified. She brings two distinct strengths: 7 years as an Assistant Professor of English, and 5 years as a spoken-English academy trainer. She founded 'A Carrier to Career' to help Hindi-medium learners truly understand English — not just translate it — and speak with real confidence. Her method focuses on practical, real-life communication, daily speaking practice, and the confidence that opens career opportunities."
   },
   "faq": {
     "heading": "Frequently Asked Questions",
@@ -170,6 +177,30 @@
     "subheading": "Call Ma'am Prakriti now and start your English learning journey today.",
     "callButton": "Call Now",
     "whatsappButton": "Chat on WhatsApp"
+  },
+  "practice": {
+    "heading": "Try It Yourself",
+    "subheading": "A 30-second taste of how we turn Hindi into confident English.",
+    "toggle": {
+      "label": "Think in Hindi → Speak in English",
+      "confidence": "Confidence",
+      "transform": "Speak in English",
+      "showHindi": "Show the thought",
+      "next": "Next example"
+    },
+    "wordFlip": {
+      "tab": "Word Flip",
+      "hint": "Tap a card to reveal the English word and how to say it."
+    },
+    "sentence": {
+      "tab": "Sentence Builder",
+      "hint": "Tap the words in the right order to match the Hindi sentence.",
+      "placeholder": "Tap words below to build the sentence…",
+      "check": "Check",
+      "correct": "Correct!",
+      "tryAgain": "Not quite — try again.",
+      "next": "Next"
+    }
   },
   "contact": {
     "heading": "Contact Us",
