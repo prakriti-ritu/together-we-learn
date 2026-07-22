@@ -39,6 +39,7 @@ export interface SiteSettings {
   whatsapp?: string;
   email?: string;
   instagram?: string;
+  youtube?: string;
   heroHeadline?: LocalizedString;
   heroSubheadline?: LocalizedString;
   heroDescription?: LocalizedString;
@@ -147,5 +148,6 @@ export const getContact = cache(async (): Promise<Contact> => {
     whatsapp: s?.whatsapp || SITE.whatsapp,
     email: s?.email || SITE.email,
     instagram: s?.instagram || SITE.instagram,
+    youtube: s?.youtube || SITE.youtube,
   };
 });

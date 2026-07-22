@@ -32,6 +32,11 @@ export const siteSettings = defineType({
       type: "url",
     }),
     defineField({
+      name: "youtube",
+      title: "YouTube URL",
+      type: "url",
+    }),
+    defineField({
       name: "heroHeadline",
       title: "Hero Headline",
       type: "localizedString",
