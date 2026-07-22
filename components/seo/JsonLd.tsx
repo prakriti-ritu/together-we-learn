@@ -1,3 +1,5 @@
+import { SITE } from "@/lib/site";
+
 interface JsonLdProps {
   data: Record<string, unknown>;
 }
@@ -21,9 +23,9 @@ export function HomePageJsonLd({ locale }: { locale: string }) {
     description: isHindi
       ? "अंबिकापुर, छत्तीसगढ़ में स्पोकन इंग्लिश कोर्स"
       : "Spoken English Classes in Ambikapur, Chhattisgarh",
-    url: "https://togetherwelearn.vercel.app",
-    telephone: "+917247400000",
-    email: "prakriti@gmail.com",
+    url: SITE.url,
+    telephone: SITE.phone,
+    email: SITE.email,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Ambikapur",
@@ -42,8 +44,8 @@ export function HomePageJsonLd({ locale }: { locale: string }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "A Carrier to Career - Spoken English Academy",
-    telephone: "+917247400000",
-    email: "prakriti@gmail.com",
+    telephone: SITE.phone,
+    email: SITE.email,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Ambikapur",

@@ -8,11 +8,12 @@
  */
 export const SITE = {
   brand: "A Carrier to Career",
-  phone: process.env.NEXT_PUBLIC_PHONE || "+917247400000",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "917247400000",
-  email: process.env.CONTACT_EMAIL || "prakriti@gmail.com",
+  phone: process.env.NEXT_PUBLIC_PHONE || "",
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "",
+  email: process.env.CONTACT_EMAIL || "",
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM || "",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://togetherwelearn.vercel.app",
+  youtube: process.env.NEXT_PUBLIC_YOUTUBE || "",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "",
 } as const;
 
 export interface Contact {
@@ -20,6 +21,7 @@ export interface Contact {
   whatsapp: string;
   email: string;
   instagram: string;
+  youtube: string;
 }
 
 /** `tel:` href from a display phone number (strips spaces). */

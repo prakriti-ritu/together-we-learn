@@ -6,6 +6,7 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   whatsapp,
   email,
   instagram,
+  youtube,
   heroHeadline,
   heroSubheadline,
   heroDescription,

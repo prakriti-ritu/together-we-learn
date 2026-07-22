@@ -62,9 +62,9 @@ export async function POST(request: NextRequest) {
 
     // Send email via Resend (if configured)
     const resendKey = process.env.RESEND_API_KEY;
-    const contactEmail = process.env.CONTACT_EMAIL || "prakriti@gmail.com";
+    const contactEmail = process.env.CONTACT_EMAIL;
 
-    if (resendKey) {
+    if (resendKey && contactEmail) {
       const { Resend } = await import("resend");
       const resend = new Resend(resendKey);
 
