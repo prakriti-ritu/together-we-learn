@@ -67,7 +67,7 @@ export default function ReviewCarousel({ children, totalCards }: ReviewCarouselP
       {/* Arrow buttons — desktop only */}
       <button
         onClick={() => scroll("left")}
-        className={`hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 rounded-full bg-white/90 shadow-card items-center justify-center text-navy transition-all duration-200 hover:bg-white hover:shadow-card-hover ${
+        className={`hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 rounded-full bg-white/90 shadow-card items-center justify-center text-panel transition-all duration-200 hover:bg-white hover:shadow-card-hover ${
           canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-label="Previous review"
@@ -78,7 +78,7 @@ export default function ReviewCarousel({ children, totalCards }: ReviewCarouselP
       </button>
       <button
         onClick={() => scroll("right")}
-        className={`hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 rounded-full bg-white/90 shadow-card items-center justify-center text-navy transition-all duration-200 hover:bg-white hover:shadow-card-hover ${
+        className={`hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 rounded-full bg-white/90 shadow-card items-center justify-center text-panel transition-all duration-200 hover:bg-white hover:shadow-card-hover ${
           canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-label="Next review"
