@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
 import DemoPopup from "@/components/ui/DemoPopup";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import { getContact } from "@/sanity/lib/fetch";
 import "@/app/globals.css";
 
@@ -45,10 +46,10 @@ export default async function LocaleLayout({
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
         </noscript>
-        {/* Apply saved theme before first paint to avoid a flash (static file, no inline injection) */}
-        <script src="/theme-init.js" />
       </head>
       <body className={`min-h-full flex flex-col ${locale === "hi" ? "font-hindi" : ""}`}>
+        {/* Apply saved theme before first paint (external static file, via next/script) */}
+        <Script src="/theme-init.js" strategy="beforeInteractive" />
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale} contact={contact} />
           <main className="flex-1 overflow-x-hidden">{children}</main>

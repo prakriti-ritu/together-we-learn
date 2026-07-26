@@ -40,12 +40,12 @@ export default async function Hero() {
           {t("eyebrow")}
         </span>
 
-        <h1 className="font-serif text-4xl md:text-6xl font-bold text-navy leading-[1.02] tracking-tight text-balance">
-          {headline}
-        </h1>
-        <p className="text-gradient font-serif italic text-2xl md:text-3xl font-semibold mt-3">
+        <p className="text-gradient font-serif italic text-2xl md:text-3xl font-semibold">
           {subheadline}
         </p>
+        <h1 className="font-serif text-4xl md:text-6xl font-bold text-navy leading-[1.02] tracking-tight text-balance mt-3">
+          {headline}
+        </h1>
         <p className="text-text-secondary text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
           {description}
         </p>
