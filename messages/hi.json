@@ -238,7 +238,11 @@
     "contactInfo": "Contact Info",
     "followUs": "Follow करें",
     "copyright": "A Carrier to Career. All Rights Reserved.",
-    "madeWith": "अंबिकापुर, छत्तीसगढ़ से Love के साथ बनाया गया"
+    "madeWith": "अंबिकापुर, छत्तीसगढ़ से Love के साथ बनाया गया",
+    "developedBy": "डेवलप किया —",
+    "devHook": "यह वेबसाइट पसंद आई?",
+    "devBy": "डिज़ाइन और डेवलप किया —",
+    "devCta": "ऐसी वेबसाइट बनवाएँ"
   },
   "reviewsPage": {
     "heading": "Student Reviews",
@@ -295,7 +299,7 @@
     "subtitle": "कोई फीस नहीं, कोई दबाव नहीं — बस 20 मिनट में देखें क्लास कैसी होती है।",
     "cta": "फ्री डेमो बुक करें",
     "nameLabel": "आपका नाम",
-    "namePlaceholder": "जैसे रवि कुमार",
+    "namePlaceholder": "जैसे वांशुल केशरवानी",
     "phoneLabel": "फ़ोन / WhatsApp",
     "phonePlaceholder": "जैसे 98765 43210",
     "timeLabel": "पसंदीदा समय",

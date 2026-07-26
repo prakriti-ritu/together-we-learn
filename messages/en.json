@@ -238,7 +238,11 @@
     "contactInfo": "Contact Info",
     "followUs": "Follow Us",
     "copyright": "A Carrier to Career. All rights reserved.",
-    "madeWith": "Made with love in Ambikapur, Chhattisgarh"
+    "madeWith": "Made with love in Ambikapur, Chhattisgarh",
+    "developedBy": "Developed by",
+    "devHook": "Loved this website?",
+    "devBy": "Designed & built by",
+    "devCta": "Get one like this"
   },
   "reviewsPage": {
     "heading": "Student Reviews",
@@ -295,7 +299,7 @@
     "subtitle": "No fees, no pressure — just 20 minutes to see how the classes work.",
     "cta": "Book a free demo",
     "nameLabel": "Your name",
-    "namePlaceholder": "e.g. Vanshul",
+    "namePlaceholder": "e.g. Vanshul kesharwani",
     "phoneLabel": "Phone / WhatsApp",
     "phonePlaceholder": "e.g. 98765 43210",
     "timeLabel": "Preferred time",
