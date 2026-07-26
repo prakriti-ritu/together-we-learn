@@ -47,13 +47,31 @@ export default function DemoPopup({ locale, whatsapp }: { locale: string; whatsa
     const onMouseOut = (e: MouseEvent) => {
       if (e.clientY <= 0) trigger();
     };
+    // If the visitor deliberately taps a "Book a demo" CTA, they've already
+    // engaged — suppress the popup (and don't let the smooth-scroll to
+    // #book-demo trip the scroll trigger).
+    const onBookClick = (e: MouseEvent) => {
+      const el = (e.target as HTMLElement | null)?.closest?.(
+        'a[href*="#book-demo"], [data-book-demo]'
+      );
+      if (el) {
+        try {
+          localStorage.setItem(SEEN_KEY, "1");
+        } catch {
+          /* ignore */
+        }
+        cleanup();
+      }
+    };
     function cleanup() {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onMouseOut);
+      document.removeEventListener("click", onBookClick, true);
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("mouseout", onMouseOut);
+    document.addEventListener("click", onBookClick, true);
     return cleanup;
   }, []);
 

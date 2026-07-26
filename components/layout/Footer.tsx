@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import PhoneIcon from "@/components/ui/PhoneIcon";
 import { telHref, waHref, type Contact } from "@/lib/site";
+import DevContact from "@/components/layout/DevContact";
 
 export default function Footer({
   locale,
@@ -13,12 +14,6 @@ export default function Footer({
 }) {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
-
-  const devMail = `mailto:vkvanshulkesharwani54@gmail.com?subject=${encodeURIComponent(
-    "I want a website like A Carrier to Career"
-  )}&body=${encodeURIComponent(
-    "Hi Vanshul, I saw the website you built for A Carrier to Career and I'd love one like it. Please get in touch."
-  )}`;
 
   const quickLinks = [
     { href: `/${locale}`, label: nav("home") },
@@ -108,41 +103,8 @@ export default function Footer({
           </p>
           <p className="text-white/30 text-xs mt-1">{t("madeWith")}</p>
 
-          {/* Developer badge */}
-          <div className="mt-6 flex justify-center">
-            <div className="group inline-flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3.5 backdrop-blur-sm transition-colors hover:border-gold/40">
-              <div className="text-center sm:text-left">
-                <p className="text-gold text-[11px] font-semibold uppercase tracking-widest">
-                  {t("devHook")}
-                </p>
-                <p className="text-white/80 text-sm mt-0.5">
-                  {t("devBy")}{" "}
-                  <span className="relative inline-block group/dev">
-                    <a
-                      href="mailto:vkvanshulkesharwani54@gmail.com"
-                      title="vkvanshulkesharwani54@gmail.com"
-                      className="font-serif font-semibold text-white underline decoration-dotted decoration-gold/60 underline-offset-4 hover:text-gold transition-colors"
-                    >
-                      Vanshul Kesharwani
-                    </a>
-                    <span
-                      role="tooltip"
-                      className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 whitespace-nowrap rounded-lg border border-white/10 bg-panel-2 text-white text-xs px-3 py-1.5 opacity-0 translate-y-1 shadow-card transition-all duration-200 group-hover/dev:opacity-100 group-hover/dev:translate-y-0"
-                    >
-                      📧 vkvanshulkesharwani54@gmail.com
-                    </span>
-                  </span>
-                </p>
-              </div>
-              <a
-                href={devMail}
-                className="inline-flex items-center justify-center gap-1.5 bg-gold text-white text-sm font-semibold rounded-xl px-4 py-2.5 shadow-button hover:bg-gold-light transition-colors whitespace-nowrap"
-              >
-                {t("devCta")}
-                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-              </a>
-            </div>
-          </div>
+          {/* Developer credit + contact (mailto with clipboard fallback) */}
+          <DevContact />
         </div>
       </div>
     </footer>

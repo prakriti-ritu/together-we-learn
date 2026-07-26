@@ -242,7 +242,8 @@
     "developedBy": "Developed by",
     "devHook": "Loved this website?",
     "devBy": "Designed & built by",
-    "devCta": "Get one like this"
+    "devCta": "Get one like this",
+    "devCopied": "Email copied!"
   },
   "reviewsPage": {
     "heading": "Student Reviews",
@@ -314,7 +315,7 @@
     "error": "Something went wrong. Please call or WhatsApp us instead."
   },
   "common": {
-    "waMessage": "Hi! I would like to book a free demo class."
+    "waMessage": "Hello! I came across the A Carrier to Career website and I'd like to book a free demo class for the spoken English course. Could you please share the available timings and how to get started? Thank you!"
   },
   "levelQuiz": {
     "eyebrow": "2-minute quiz",

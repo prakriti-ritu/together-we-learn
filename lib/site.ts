@@ -24,13 +24,19 @@ export interface Contact {
   youtube: string;
 }
 
-/** `tel:` href from a display phone number (strips spaces). */
+/** `tel:` href from a display phone number (keeps a leading +, drops everything else non-numeric). */
 export function telHref(phone: string): string {
-  return `tel:${phone.replace(/\s+/g, "")}`;
+  const cleaned = phone.trim().replace(/[^\d+]/g, "");
+  // Keep only a single leading "+" (some dialers choke on stray symbols/spaces).
+  const normalized = cleaned.startsWith("+")
+    ? "+" + cleaned.slice(1).replace(/\+/g, "")
+    : cleaned.replace(/\+/g, "");
+  return `tel:${normalized}`;
 }
 
-/** `wa.me` href with an optional prefilled message. */
+/** `wa.me` href with an optional prefilled message. wa.me needs digits only (no +, no spaces). */
 export function waHref(whatsapp: string, text?: string): string {
-  const base = `https://wa.me/${whatsapp}`;
+  const digits = whatsapp.replace(/\D/g, "");
+  const base = `https://wa.me/${digits}`;
   return text ? `${base}?text=${encodeURIComponent(text)}` : base;
 }
