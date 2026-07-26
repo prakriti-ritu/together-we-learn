@@ -44,6 +44,12 @@ export interface SiteSettings {
   heroSubheadline?: LocalizedString;
   heroDescription?: LocalizedString;
   heroImage?: SanityImage;
+  heroClipUrl?: string;
+  achievementImage?: SanityImage;
+  achievementHeading?: LocalizedString;
+  achievementText?: LocalizedString;
+  achievementCaption?: LocalizedString;
+  heroStats?: { value?: string; label?: LocalizedString }[];
   trustStats?: { label?: LocalizedString; value?: string }[];
 }
 

@@ -3,7 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import VideoItem from "@/components/sections/class-videos/VideoItem";
 import { getClassVideos, pick, type Locale } from "@/sanity/lib/fetch";
 
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
 export async function generateMetadata({
   params,

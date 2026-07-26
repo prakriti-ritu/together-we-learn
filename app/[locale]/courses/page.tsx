@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import CoursesSection from "@/components/sections/CoursesSection";
 
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
 export async function generateMetadata({
   params,

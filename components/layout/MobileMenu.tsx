@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import ThemeToggle from "./ThemeToggle";
 
 interface MobileMenuProps {
   locale: string;
@@ -10,6 +12,7 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ links }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("nav");
 
   return (
     <div className="md:hidden">
@@ -42,6 +45,11 @@ export default function MobileMenu({ links }: MobileMenuProps) {
                 {link.label}
               </Link>
             ))}
+            {/* Theme toggle inside the menu (keeps the mobile top bar uncluttered) */}
+            <div className="flex items-center justify-between py-2 px-4 mt-1 border-t border-border-warm">
+              <span className="text-navy font-medium">{t("theme")}</span>
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       )}

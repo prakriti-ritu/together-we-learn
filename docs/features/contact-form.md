@@ -8,7 +8,7 @@
 2. Form POSTs JSON to `/api/contact`.
 3. The route:
    - Validates with **Zod**.
-   - **Optionally** rate-limits by IP (5/hour) if Upstash env vars are set.
+   - **Optionally** rate-limits by IP (3/hour) if Upstash env vars are set.
    - HTML-escapes inputs and **optionally** emails `CONTACT_EMAIL` via **Resend** if `RESEND_API_KEY` is set.
    - Returns `{ success: true }` or an error.
 4. On success the form shows a confirmation state.

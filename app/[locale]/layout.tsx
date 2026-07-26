@@ -7,6 +7,8 @@ import { cormorant, jakartaSans, mukta } from "@/lib/fonts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
+import DemoPopup from "@/components/ui/DemoPopup";
+import { Analytics } from "@vercel/analytics/next";
 import { getContact } from "@/sanity/lib/fetch";
 import "@/app/globals.css";
 
@@ -33,19 +35,28 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
+      suppressHydrationWarning
       className={`${cormorant.variable} ${jakartaSans.variable} ${mukta.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        {/* If JS is unavailable, ensure scroll-reveal content is always visible (SEO/a11y safety) */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
+        </noscript>
+        {/* Apply saved theme before first paint to avoid a flash (static file, no inline injection) */}
+        <script src="/theme-init.js" />
       </head>
       <body className={`min-h-full flex flex-col ${locale === "hi" ? "font-hindi" : ""}`}>
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale} contact={contact} />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 overflow-x-hidden">{children}</main>
           <Footer locale={locale} contact={contact} />
           <MobileStickyBar contact={contact} />
+          <DemoPopup locale={locale} whatsapp={contact.whatsapp} />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import PhoneIcon from "@/components/ui/PhoneIcon";
 import MobileMenu from "./MobileMenu";
 import LanguageToggle from "./LanguageToggle";
+import ThemeToggle from "./ThemeToggle";
 import { telHref, type Contact } from "@/lib/site";
 
 export default function Header({
@@ -27,7 +28,7 @@ export default function Header({
     <header className="sticky top-0 z-50 bg-card-white/95 backdrop-blur-sm border-b border-border-warm">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href={`/${locale}`} className="font-serif text-xl font-bold text-navy">
+        <Link href={`/${locale}`} className="font-serif text-lg md:text-xl font-bold text-navy truncate">
           A Carrier to Career
         </Link>
 
@@ -44,12 +45,16 @@ export default function Header({
           ))}
         </nav>
 
-        {/* Right side: language toggle + phone (mobile) + hamburger */}
-        <div className="flex items-center gap-3">
+        {/* Right side: theme (desktop) + language toggle + phone (mobile) + hamburger */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Theme toggle lives in the bar on desktop, and inside the hamburger on mobile */}
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
           <LanguageToggle locale={locale} />
           <a
             href={telHref(contact.phone)}
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-navy text-white"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-panel text-white shrink-0"
             aria-label={t("callNow")}
           >
             <PhoneIcon className="w-4 h-4" />

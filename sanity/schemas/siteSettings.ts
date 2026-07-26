@@ -58,6 +58,52 @@ export const siteSettings = defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: "heroClipUrl",
+      title: "60-Second Class Clip (YouTube URL)",
+      description:
+        "Optional. A short class clip shown in a band right below the hero. The video loads only when tapped (keeps the page fast).",
+      type: "url",
+    }),
+    defineField({
+      name: "achievementImage",
+      title: "Achievement Photo (e.g. gold-medal ceremony)",
+      description:
+        "Optional. A standout achievement photo (e.g. receiving the gold medal, with dignitaries) shown below the hero. Separate from the About Teacher portrait.",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "achievementHeading",
+      title: "Achievement Heading",
+      type: "localizedString",
+    }),
+    defineField({
+      name: "achievementText",
+      title: "Achievement Text",
+      type: "localizedText",
+    }),
+    defineField({
+      name: "achievementCaption",
+      title: "Achievement Photo Caption",
+      type: "localizedString",
+    }),
+    defineField({
+      name: "heroStats",
+      title: "Hero Stats (count-up numbers)",
+      description:
+        "Optional big numbers shown under the hero (e.g. Value \"500+\", Label \"Students taught\"). Leave empty to hide the stats band.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "value", title: "Value (e.g. 500+, 4.9★, 7 yrs)", type: "string" },
+            { name: "label", title: "Label", type: "localizedString" },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: "trustStats",
       title: "Trust Strip Stats",
       type: "array",

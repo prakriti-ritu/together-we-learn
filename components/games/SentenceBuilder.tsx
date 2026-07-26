@@ -72,7 +72,7 @@ export default function SentenceBuilder() {
           <button
             key={i}
             onClick={() => unpick(i)}
-            className="rounded-lg bg-navy text-white px-3 py-1.5 text-sm font-medium hover:bg-navy-light transition-colors"
+            className="rounded-lg bg-panel text-white px-3 py-1.5 text-sm font-medium hover:bg-panel-2 transition-colors"
           >
             {sentence.words[i]}
           </button>

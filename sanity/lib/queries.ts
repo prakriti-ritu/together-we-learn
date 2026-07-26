@@ -11,6 +11,12 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   heroSubheadline,
   heroDescription,
   heroImage,
+  heroClipUrl,
+  achievementImage,
+  achievementHeading,
+  achievementText,
+  achievementCaption,
+  heroStats,
   trustStats
 }`;
 

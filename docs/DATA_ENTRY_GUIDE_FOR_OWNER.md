@@ -35,7 +35,11 @@ Controls the header, hero section, and contact buttons across the whole site.
 | **Hero Subheadline** | The smaller line under the headline (English + Hindi). |
 | **Hero Description** | A short paragraph under that (English + Hindi). |
 | **Hero Image (Teacher Photo)** | The photo shown in the homepage banner. |
-| **Trust Strip Stats** | The row of small stats (e.g. "500+ Students Taught"). Click **+** to add each one: a **Label** (English + Hindi) and a **Value** (e.g. `500+`). Add as many stat boxes as you want. |
+| **60-Second Class Clip (YouTube URL)** | Optional. Paste a YouTube link to show a short "Watch a 60-second class clip" band right below the hero. The video only loads when a visitor taps play, so the page stays fast. Leave empty to hide it. |
+| **Achievement Photo (gold-medal ceremony)** | Optional. Upload a standout photo (e.g. receiving the gold medal, with dignitaries) shown in its own band below the hero — separate from your "About Teacher" portrait. Leave empty to hide the whole achievement section. |
+| **Achievement Heading / Text / Caption** | The heading, paragraph, and photo caption for that achievement band (English + Hindi). |
+| **Hero Stats (count-up numbers)** | Optional big animated numbers under the hero. Click **+** for each: a **Value** (e.g. `500+`, `4.9★`, `7 yrs`) and a **Label** (English + Hindi). The number counts up when scrolled into view. Leave empty to hide the stats band (nothing fake is shown). |
+| **Trust Strip Stats** | The row of small credential badges. Click **+** to add each one: a **Label** (English + Hindi) and a **Value**. |
 
 ---
 

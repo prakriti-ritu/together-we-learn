@@ -37,7 +37,7 @@ function FlipCard({ hi, en, pron }: { hi: string; en: string; pron: string }) {
           <span className="text-2xl font-semibold text-navy">{hi}</span>
         </div>
         {/* Back — English */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-navy to-navy-light text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-panel to-panel-2 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <span className="text-xl font-serif font-bold">{en}</span>
           <span className="text-xs text-gold-light mt-1">/{pron}/</span>
         </div>

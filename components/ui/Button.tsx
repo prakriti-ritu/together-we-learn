@@ -16,15 +16,15 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-navy text-white shadow-button hover:bg-navy-light hover:shadow-button-hover hover:scale-[1.02]",
+    "bg-panel text-white shadow-button hover:bg-panel-2 hover:shadow-button-hover hover:scale-[1.02]",
   secondary:
     "bg-gold text-white shadow-button hover:bg-gold/90 hover:shadow-button-hover hover:scale-[1.02]",
   whatsapp:
     "bg-whatsapp text-white shadow-button hover:bg-whatsapp/90 hover:shadow-button-hover hover:scale-[1.02]",
   call:
-    "bg-navy text-white shadow-button hover:bg-navy-light hover:shadow-button-hover hover:scale-[1.02]",
+    "bg-panel text-white shadow-button hover:bg-panel-2 hover:shadow-button-hover hover:scale-[1.02]",
   outline:
-    "border-2 border-navy text-navy hover:bg-navy hover:text-white hover:shadow-button-hover hover:scale-[1.02]",
+    "border-2 border-navy text-navy hover:bg-panel hover:text-white hover:border-panel hover:shadow-button-hover hover:scale-[1.02]",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

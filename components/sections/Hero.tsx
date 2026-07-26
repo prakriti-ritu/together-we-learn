@@ -2,13 +2,26 @@ import { getTranslations, getLocale } from "next-intl/server";
 import Button from "@/components/ui/Button";
 import PhoneIcon from "@/components/ui/PhoneIcon";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
-import TransformationToggle from "@/components/games/TransformationToggle";
+import CalendarIcon from "@/components/ui/CalendarIcon";
+import HeroTransform from "@/components/games/HeroTransform";
+import HeroStats from "@/components/sections/HeroStats";
+import Waves from "@/components/ui/Waves";
 import { getSiteSettings, getContact, pick, type Locale } from "@/sanity/lib/fetch";
 import { telHref, waHref } from "@/lib/site";
+
+const TICKER_PHRASES = [
+  "I'd love to help.",
+  "Let me explain that.",
+  "That's a great question.",
+  "I'm confident about this.",
+  "Let's get started.",
+];
 
 export default async function Hero() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("hero");
+  const td = await getTranslations("demoBooking");
+  const tc = await getTranslations("common");
   const [settings, contact] = await Promise.all([getSiteSettings(), getContact()]);
 
   const headline = pick(settings?.heroHeadline, locale, t("headline"));
@@ -17,55 +30,71 @@ export default async function Hero() {
 
   return (
     <section className="bg-cream relative overflow-hidden">
-      {/* Subtle SVG pattern background */}
-      <div className="absolute inset-0 opacity-[0.03]" aria-hidden="true">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hero-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="1.5" fill="#0F1B2D" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
-        </svg>
+      {/* Aurora glow mesh */}
+      <div className="glow-blob" style={{ width: 560, height: 560, background: "var(--glow-a)", top: -200, right: -120 }} aria-hidden="true" />
+      <div className="glow-blob" style={{ width: 460, height: 460, background: "var(--glow-b)", bottom: -220, left: -160 }} aria-hidden="true" />
+
+      <div className="max-w-4xl mx-auto px-4 pt-14 md:pt-24 pb-10 relative text-center">
+        <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-text-secondary mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+          {t("eyebrow")}
+        </span>
+
+        <h1 className="font-serif text-4xl md:text-6xl font-bold text-navy leading-[1.02] tracking-tight text-balance">
+          {headline}
+        </h1>
+        <p className="text-gradient font-serif italic text-2xl md:text-3xl font-semibold mt-3">
+          {subheadline}
+        </p>
+        <p className="text-text-secondary text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
+          {description}
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <Button variant="secondary" size="lg" href="#book-demo">
+            <CalendarIcon className="w-5 h-5" />
+            {td("cta")}
+          </Button>
+          <Button variant="call" size="lg" href={telHref(contact.phone)}>
+            <PhoneIcon className="w-5 h-5" />
+            {t("callButton")}
+          </Button>
+          <Button variant="whatsapp" size="lg" href={waHref(contact.whatsapp, tc("waMessage"))} external>
+            <WhatsAppIcon className="w-5 h-5" />
+            {t("whatsappButton")}
+          </Button>
+        </div>
+
+        <div className="mt-12 md:mt-14">
+          <HeroTransform />
+        </div>
+
+        <HeroStats stats={settings?.heroStats} locale={locale} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-16 md:py-28 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Text content */}
-          <div className="text-center md:text-left">
-            <div className="w-10 h-[3px] bg-gradient-to-r from-gold to-gold-light rounded-full mb-6 mx-auto md:mx-0" />
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-navy mb-3 leading-tight tracking-tight">
-              {headline}
-            </h1>
-            <p className="text-gold font-serif text-xl md:text-2xl italic font-semibold mb-4">
-              {subheadline}
-            </p>
-            <p className="text-text-secondary text-lg mb-8 max-w-lg mx-auto md:mx-0">
-              {description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button variant="call" size="lg" href={telHref(contact.phone)}>
-                <PhoneIcon className="w-5 h-5" />
-                {t("callButton")}
-              </Button>
-              <Button
-                variant="whatsapp"
-                size="lg"
-                href={waHref(contact.whatsapp)}
-                external
-              >
-                <WhatsAppIcon className="w-5 h-5" />
-                {t("whatsappButton")}
-              </Button>
+      {/* Confident-phrases ticker — each half repeats the list enough to exceed the
+          viewport, and the track is two identical halves animated -50% for a seamless loop */}
+      <div className="ticker-mask border-y border-border-warm py-4 relative bg-card-white/40">
+        <div className="ticker-track">
+          {[0, 1].map((half) => (
+            <div key={half} className="flex shrink-0" aria-hidden={half === 1}>
+              {Array.from({ length: 3 }).flatMap((_, rep) =>
+                TICKER_PHRASES.map((phrase, i) => (
+                  <span
+                    key={`${half}-${rep}-${i}`}
+                    className="inline-flex items-center gap-3 px-6 text-sm md:text-base font-medium text-text-secondary whitespace-nowrap"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-gold" />
+                    {phrase}
+                  </span>
+                ))
+              )}
             </div>
-          </div>
-
-          {/* Signature interactive element */}
-          <div className="flex justify-center md:justify-end">
-            <TransformationToggle />
-          </div>
+          ))}
         </div>
       </div>
+
+      <Waves />
     </section>
   );
 }

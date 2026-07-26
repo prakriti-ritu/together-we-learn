@@ -13,14 +13,16 @@
     "expertSessions": "Expert Sessions",
     "contact": "Contact",
     "callNow": "Call Now",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "theme": "Theme"
   },
   "hero": {
     "headline": "Spoken English Course",
     "subheadline": "A Carrier to Career",
     "description": "Learn fluent English from Prakriti Ma'am — SET-qualified Government College Teacher in Ambikapur. Live online classes designed for Hindi-medium students.",
     "callButton": "Call Now",
-    "whatsappButton": "Chat on WhatsApp"
+    "whatsappButton": "Chat on WhatsApp",
+    "eyebrow": "Live online spoken English"
   },
   "trust": {
     "gold": "M.A. English · Gold Medalist",
@@ -112,7 +114,9 @@
   "reviews": {
     "heading": "What Our Students Say",
     "readAll": "Read All Reviews",
-    "stars": "stars"
+    "stars": "stars",
+    "readMore": "Read more",
+    "showLess": "Show less"
   },
   "expertSessions": {
     "heading": "Expert Sessions",
@@ -252,5 +256,84 @@
   "videosPage": {
     "heading": "Class Videos",
     "subheading": "Watch recordings from our spoken English classes"
+  },
+  "heroDemo": {
+    "live": "Live transformation",
+    "think": "You think in Hindi",
+    "becomes": "becomes",
+    "say": "You say in English",
+    "confidence": "Confidence"
+  },
+  "ladder": {
+    "eyebrow": "Your journey",
+    "heading": "From hesitant to fluent",
+    "subtitle": "Everyone starts somewhere. Here is the climb we make together.",
+    "step1t": "Hesitant",
+    "step1d": "We start where you are — no judgment.",
+    "step2t": "Everyday talk",
+    "step2d": "Calls, small talk, real life.",
+    "step3t": "Confident at work",
+    "step3d": "Meetings, interviews, presentations.",
+    "step4t": "Fluent & free",
+    "step4d": "No more translating in your head."
+  },
+  "achievement": {
+    "eyebrow": "Recognition",
+    "heading": "A Gold Medalist teacher",
+    "text": "Learn from a teacher whose excellence is officially recognised — so you know you are in expert hands.",
+    "caption": ""
+  },
+  "classClip": {
+    "eyebrow": "See it in action",
+    "heading": "Watch a 60-second class clip",
+    "subtitle": "A quick peek at a real lesson — the video loads only when you tap play.",
+    "play": "Play class clip"
+  },
+  "demoBooking": {
+    "eyebrow": "Free trial class",
+    "heading": "Book a FREE demo class",
+    "subtitle": "No fees, no pressure — just 20 minutes to see how the classes work.",
+    "cta": "Book a free demo",
+    "nameLabel": "Your name",
+    "namePlaceholder": "e.g. Vanshul",
+    "phoneLabel": "Phone / WhatsApp",
+    "phonePlaceholder": "e.g. 98765 43210",
+    "timeLabel": "Preferred time",
+    "timePlaceholder": "Choose a time",
+    "timeMorning": "Morning",
+    "timeAfternoon": "Afternoon",
+    "timeEvening": "Evening",
+    "timeWeekend": "Weekend",
+    "submit": "Book my free demo",
+    "sending": "Booking…",
+    "success": "Thank you! We will call you to confirm your free demo class.",
+    "error": "Something went wrong. Please call or WhatsApp us instead."
+  },
+  "common": {
+    "waMessage": "Hi! I would like to book a free demo class."
+  },
+  "levelQuiz": {
+    "eyebrow": "2-minute quiz",
+    "heading": "Test your English level",
+    "subtitle": "Answer 5 quick questions to see where you stand — then book a free demo to level up.",
+    "prompt": "Which sentence is correct?",
+    "next": "Next",
+    "seeResult": "See my result",
+    "score": "You scored {score} / {total}",
+    "beginnerTitle": "Beginner — a great starting point!",
+    "beginnerText": "Everyone starts here. A few guided classes will build a strong foundation fast.",
+    "intermediateTitle": "Intermediate — you are getting there!",
+    "intermediateText": "You have the basics. A little structured practice and you will speak with real confidence.",
+    "advancedTitle": "Advanced — impressive!",
+    "advancedText": "You are close to fluent. Let us polish the finer points and perfect your delivery.",
+    "cta": "Book a free demo",
+    "restart": "Try again"
+  },
+  "demoPopup": {
+    "heading": "Ready to speak with confidence?",
+    "text": "Book a FREE demo class — no fees, no pressure.",
+    "book": "Book free demo",
+    "whatsapp": "WhatsApp us",
+    "dismiss": "Close"
   }
 }

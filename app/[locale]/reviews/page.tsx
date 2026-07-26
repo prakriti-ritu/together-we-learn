@@ -4,7 +4,7 @@ import ReviewCard from "@/components/ui/ReviewCard";
 import { getReviews, pick, type Locale } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
 export async function generateMetadata({
   params,
@@ -18,7 +18,7 @@ export async function generateMetadata({
 
 // Seed reviews shown until the tutor adds real ones in Sanity Studio.
 const allReviews = [
-  { id: "1", name: "Ravi Kumar", city: "Ambikapur", rating: 5, text: "Prakriti Ma'am is an amazing teacher. I was very shy to speak English but after 3 months of her course, I can now speak confidently in interviews. I got a promotion at work because of my improved English skills!", featured: true },
+  { id: "1", name: "Vanshul", city: "Ambikapur", rating: 5, text: "Prakriti Ma'am is an amazing teacher. I was very shy to speak English but after 3 months of her course, I can now speak confidently in interviews. I got a promotion at work because of my improved English skills!", featured: true },
   { id: "2", name: "Priya Sharma", city: "Raipur", rating: 5, text: "The best English speaking course I have taken. Ma'am explains everything in Hindi first which makes it very easy to understand." },
   { id: "3", name: "Amit Patel", city: "Bilaspur", rating: 4, text: "Very helpful course for Hindi medium students. The online classes are convenient and the teaching quality is excellent." },
   { id: "4", name: "Sneha Tiwari", city: "Korba", rating: 5, text: "It changed my life. Now I can speak English fluently in my workplace." },

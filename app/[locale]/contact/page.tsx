@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/components/sections/ContactForm";
+import DemoBooking from "@/components/sections/DemoBooking";
 import PhoneIcon from "@/components/ui/PhoneIcon";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { getContact } from "@/sanity/lib/fetch";
@@ -68,6 +69,9 @@ export default async function ContactPage() {
         </div>
 
         <ContactForm />
+      </div>
+      <div className="mt-8">
+        <DemoBooking />
       </div>
     </section>
   );

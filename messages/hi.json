@@ -13,14 +13,16 @@
     "expertSessions": "Expert Sessions",
     "contact": "Contact",
     "callNow": "Call करें",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "theme": "थीम"
   },
   "hero": {
     "headline": "Spoken English Course",
     "subheadline": "A Carrier to Career",
     "description": "प्रकृति Ma'am से English सीखें — SET-Qualified Government College Teacher, अंबिकापुर। Hindi Medium Students के लिए Special Live Online Classes।",
     "callButton": "अभी Call करें",
-    "whatsappButton": "WhatsApp पर बात करें"
+    "whatsappButton": "WhatsApp पर बात करें",
+    "eyebrow": "लाइव ऑनलाइन स्पोकन इंग्लिश"
   },
   "trust": {
     "gold": "M.A. English · Gold Medalist",
@@ -112,7 +114,9 @@
   "reviews": {
     "heading": "हमारे Students क्या कहते हैं",
     "readAll": "सारे Reviews पढ़ें",
-    "stars": "Stars"
+    "stars": "Stars",
+    "readMore": "पूरा पढ़ें",
+    "showLess": "कम दिखाएँ"
   },
   "expertSessions": {
     "heading": "Expert Sessions",
@@ -252,5 +256,84 @@
   "videosPage": {
     "heading": "Class Videos",
     "subheading": "हमारी Spoken English Classes की Recordings देखें"
+  },
+  "heroDemo": {
+    "live": "लाइव ट्रांसफ़ॉर्मेशन",
+    "think": "आप हिंदी में सोचते हैं",
+    "becomes": "बनता है",
+    "say": "आप अंग्रेज़ी में बोलते हैं",
+    "confidence": "आत्मविश्वास"
+  },
+  "ladder": {
+    "eyebrow": "आपका सफ़र",
+    "heading": "झिझक से फ़र्राटेदार तक",
+    "subtitle": "हर किसी की शुरुआत कहीं से होती है। यह रहा वो सफ़र जो हम साथ तय करते हैं।",
+    "step1t": "झिझक",
+    "step1d": "जहाँ आप हैं वहीं से शुरू करते हैं — बिना किसी झिझक के।",
+    "step2t": "रोज़मर्रा की बातचीत",
+    "step2d": "कॉल, छोटी-छोटी बातें, असल ज़िंदगी।",
+    "step3t": "काम पर आत्मविश्वास",
+    "step3d": "मीटिंग, इंटरव्यू, प्रेज़ेंटेशन।",
+    "step4t": "फ़र्राटेदार और आज़ाद",
+    "step4d": "अब मन में अनुवाद करने की ज़रूरत नहीं।"
+  },
+  "achievement": {
+    "eyebrow": "सम्मान",
+    "heading": "गोल्ड मेडलिस्ट शिक्षिका",
+    "text": "एक ऐसी शिक्षिका से सीखें जिनकी उत्कृष्टता आधिकारिक रूप से सम्मानित है — यानी आप विशेषज्ञ हाथों में हैं।",
+    "caption": ""
+  },
+  "classClip": {
+    "eyebrow": "झलक देखें",
+    "heading": "60 सेकंड की क्लास क्लिप देखें",
+    "subtitle": "एक असली क्लास की झलक — वीडियो तभी लोड होगा जब आप प्ले दबाएँगे।",
+    "play": "क्लास क्लिप चलाएँ"
+  },
+  "demoBooking": {
+    "eyebrow": "फ्री ट्रायल क्लास",
+    "heading": "एक फ्री डेमो क्लास बुक करें",
+    "subtitle": "कोई फीस नहीं, कोई दबाव नहीं — बस 20 मिनट में देखें क्लास कैसी होती है।",
+    "cta": "फ्री डेमो बुक करें",
+    "nameLabel": "आपका नाम",
+    "namePlaceholder": "जैसे रवि कुमार",
+    "phoneLabel": "फ़ोन / WhatsApp",
+    "phonePlaceholder": "जैसे 98765 43210",
+    "timeLabel": "पसंदीदा समय",
+    "timePlaceholder": "समय चुनें",
+    "timeMorning": "सुबह",
+    "timeAfternoon": "दोपहर",
+    "timeEvening": "शाम",
+    "timeWeekend": "वीकेंड",
+    "submit": "मेरी फ्री डेमो बुक करें",
+    "sending": "बुक हो रहा है…",
+    "success": "धन्यवाद! हम आपकी फ्री डेमो क्लास कन्फर्म करने के लिए कॉल करेंगे।",
+    "error": "कुछ गड़बड़ हुई। कृपया कॉल या WhatsApp करें।"
+  },
+  "common": {
+    "waMessage": "नमस्ते! मैं एक फ्री डेमो क्लास बुक करना चाहता/चाहती हूँ।"
+  },
+  "levelQuiz": {
+    "eyebrow": "2 मिनट की क्विज़",
+    "heading": "अपना English लेवल जानें",
+    "subtitle": "5 आसान सवालों के जवाब दें और देखें आप कहाँ हैं — फिर आगे बढ़ने के लिए फ्री डेमो बुक करें।",
+    "prompt": "कौन सा वाक्य सही है?",
+    "next": "आगे",
+    "seeResult": "मेरा नतीजा देखें",
+    "score": "आपका स्कोर {score} / {total}",
+    "beginnerTitle": "बिगिनर — बढ़िया शुरुआत!",
+    "beginnerText": "हर कोई यहीं से शुरू करता है। कुछ क्लासेज़ में आपकी मज़बूत नींव बन जाएगी।",
+    "intermediateTitle": "इंटरमीडिएट — आप आगे बढ़ रहे हैं!",
+    "intermediateText": "आपको बेसिक्स आते हैं। थोड़ी प्रैक्टिस से आप आत्मविश्वास से बोलेंगे।",
+    "advancedTitle": "एडवांस्ड — शानदार!",
+    "advancedText": "आप फ़र्राटेदार के करीब हैं। आइए बारीकियों को और निखारें।",
+    "cta": "फ्री डेमो बुक करें",
+    "restart": "फिर से करें"
+  },
+  "demoPopup": {
+    "heading": "आत्मविश्वास से बोलने के लिए तैयार?",
+    "text": "एक फ्री डेमो क्लास बुक करें — कोई फीस नहीं, कोई दबाव नहीं।",
+    "book": "फ्री डेमो बुक करें",
+    "whatsapp": "WhatsApp करें",
+    "dismiss": "बंद करें"
   }
 }

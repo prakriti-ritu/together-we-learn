@@ -85,7 +85,7 @@ Without this, the contact form still works and shows "success" to visitors — y
 
 ## 4. Upstash — stop spam on the contact form (optional)
 
-This limits the contact form to 5 submissions per hour per visitor, so it can't be spammed. Only worth setting up if you start noticing spam.
+This limits the contact form to 3 submissions per hour per visitor, so it can't be spammed. Only worth setting up if you start noticing spam.
 
 **Sign up:**
 1. Go to **https://upstash.com**

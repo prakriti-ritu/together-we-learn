@@ -10,7 +10,7 @@ export default function Card({ children, className = "", dark, accent }: CardPro
     <div
       className={`rounded-2xl p-6 md:p-8 ${
         dark
-          ? "bg-navy text-white"
+          ? "bg-panel text-white"
           : "bg-card-white border border-border-warm shadow-card"
       } ${
         accent ? "border-t-[3px] border-t-gold" : ""

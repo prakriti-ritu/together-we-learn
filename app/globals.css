@@ -1,15 +1,94 @@
 @import "tailwindcss";
 
+/*
+ * Midnight palette (Aurora redesign) with full light/dark support.
+ *
+ * Semantic tokens live on :root and flip under (prefers-color-scheme: dark)
+ * and the explicit [data-theme] set by the header ThemeToggle. Tailwind color
+ * utilities are mapped to these tokens via @theme inline, so existing classes
+ * (bg-cream/text-navy/text-gold/bg-card-white/border-border-warm) become
+ * theme-aware automatically.
+ *
+ * Dual-role note: "navy" was used both as text AND as dark surfaces. Text keeps
+ * using --color-navy (→ --ink, which flips). Intentionally-dark surfaces
+ * (footer, CTA, featured cards, dark buttons) use the new --color-panel token
+ * which stays dark-with-light-text in both themes.
+ */
+
+:root {
+  --ground: #F6F7FB;
+  --surface: #FFFFFF;
+  --panel: #0B0E1A;
+  --panel-2: #1B2136;
+  --ink: #0B0E1A;
+  --ink-soft: #5B627A;
+  --ink-faint: #8B91A6;
+  --line: rgba(11, 14, 26, 0.10);
+  --line-strong: rgba(11, 14, 26, 0.16);
+  --accent: #5B3FE0;
+  --accent-bright: #6C4CF1;
+  --accent-2: #0FA98A;
+  --glow-a: rgba(108, 76, 241, 0.16);
+  --glow-b: rgba(15, 169, 138, 0.10);
+  --track: rgba(11, 14, 26, 0.06);
+  --shadow-card-val: 0 2px 8px rgba(11, 14, 26, 0.05), 0 14px 34px -18px rgba(11, 14, 26, 0.18);
+  --shadow-card-hover-val: 0 4px 12px rgba(11, 14, 26, 0.08), 0 22px 48px -20px rgba(11, 14, 26, 0.26);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #0A0D18;
+    --surface: #12162A;
+    --panel: #12162A;
+    --panel-2: #1E2440;
+    --ink: #EEF0F8;
+    --ink-soft: #A2A8C0;
+    --ink-faint: #6E7492;
+    --line: rgba(255, 255, 255, 0.09);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --accent: #8A72FF;
+    --accent-bright: #9B86FF;
+    --accent-2: #2FE3B7;
+    --glow-a: rgba(124, 92, 255, 0.30);
+    --glow-b: rgba(47, 227, 183, 0.16);
+    --track: rgba(255, 255, 255, 0.08);
+    --shadow-card-val: 0 2px 8px rgba(0, 0, 0, 0.4), 0 18px 44px -20px rgba(0, 0, 0, 0.7);
+    --shadow-card-hover-val: 0 4px 12px rgba(0, 0, 0, 0.5), 0 26px 56px -22px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Explicit theme overrides (set by ThemeToggle) win over the media query in both directions */
+:root[data-theme="light"] {
+  --ground: #F6F7FB; --surface: #FFFFFF; --panel: #0B0E1A; --panel-2: #1B2136;
+  --ink: #0B0E1A; --ink-soft: #5B627A; --ink-faint: #8B91A6;
+  --line: rgba(11,14,26,0.10); --line-strong: rgba(11,14,26,0.16);
+  --accent: #5B3FE0; --accent-bright: #6C4CF1; --accent-2: #0FA98A;
+  --glow-a: rgba(108,76,241,0.16); --glow-b: rgba(15,169,138,0.10); --track: rgba(11,14,26,0.06);
+  --shadow-card-val: 0 2px 8px rgba(11,14,26,0.05), 0 14px 34px -18px rgba(11,14,26,0.18);
+  --shadow-card-hover-val: 0 4px 12px rgba(11,14,26,0.08), 0 22px 48px -20px rgba(11,14,26,0.26);
+}
+:root[data-theme="dark"] {
+  --ground: #0A0D18; --surface: #12162A; --panel: #12162A; --panel-2: #1E2440;
+  --ink: #EEF0F8; --ink-soft: #A2A8C0; --ink-faint: #6E7492;
+  --line: rgba(255,255,255,0.09); --line-strong: rgba(255,255,255,0.16);
+  --accent: #8A72FF; --accent-bright: #9B86FF; --accent-2: #2FE3B7;
+  --glow-a: rgba(124,92,255,0.30); --glow-b: rgba(47,227,183,0.16); --track: rgba(255,255,255,0.08);
+  --shadow-card-val: 0 2px 8px rgba(0,0,0,0.4), 0 18px 44px -20px rgba(0,0,0,0.7);
+  --shadow-card-hover-val: 0 4px 12px rgba(0,0,0,0.5), 0 26px 56px -22px rgba(0,0,0,0.8);
+}
+
 @theme inline {
-  --color-cream: #FAF7F2;
-  --color-navy: #0F1B2D;
-  --color-navy-light: #1A2D47;
-  --color-text-secondary: #4A5568;
-  --color-gold: #B8893E;
-  --color-gold-light: #E5C68E;
-  --color-success-green: #1F6B4A;
-  --color-card-white: #FFFFFF;
-  --color-border-warm: #E8E2D5;
+  --color-cream: var(--ground);
+  --color-card-white: var(--surface);
+  --color-navy: var(--ink);
+  --color-navy-light: var(--panel-2);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-text-secondary: var(--ink-soft);
+  --color-gold: var(--accent);
+  --color-gold-light: var(--accent-bright);
+  --color-success-green: var(--accent-2);
+  --color-border-warm: var(--line);
   --color-whatsapp: #128C7E;
   --color-whatsapp-light: #25D366;
 
@@ -17,31 +96,27 @@
   --font-serif: var(--font-cormorant), Georgia, serif;
   --font-hindi: var(--font-mukta), sans-serif;
 
-  --shadow-card: 0 2px 8px rgba(15, 27, 45, 0.06), 0 8px 24px rgba(15, 27, 45, 0.08);
-  --shadow-card-hover: 0 4px 12px rgba(15, 27, 45, 0.08), 0 16px 40px rgba(15, 27, 45, 0.12);
-  --shadow-button: 0 2px 6px rgba(15, 27, 45, 0.10);
-  --shadow-button-hover: 0 4px 12px rgba(15, 27, 45, 0.15);
+  --shadow-card: var(--shadow-card-val);
+  --shadow-card-hover: var(--shadow-card-hover-val);
+  --shadow-button: 0 2px 6px rgba(91, 63, 224, 0.18);
+  --shadow-button-hover: 0 10px 28px -12px rgba(91, 63, 224, 0.4);
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-navy);
+  background-color: var(--ground);
+  color: var(--ink);
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.6;
 }
 
 @media (min-width: 1024px) {
-  body {
-    font-size: 17px;
-  }
+  body { font-size: 17px; }
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* Hindi locale — use Mukta for all text (headings + body) so Hinglish looks uniform */
+/* Hindi locale — use Mukta for all text so Hinglish looks uniform */
 body.font-hindi {
   --font-sans: var(--font-mukta), sans-serif;
   --font-serif: var(--font-mukta), sans-serif;
@@ -52,38 +127,111 @@ body.font-hindi {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-main {
-  animation: fadeInUp 0.3s ease-out;
-}
+main { animation: fadeInUp 0.3s ease-out; }
 
 /* Gallery scroll snap */
-.gallery-scroll {
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
+.gallery-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.gallery-scroll > * { scroll-snap-align: start; }
 
-.gallery-scroll > * {
-  scroll-snap-align: start;
+/* Clickable elements get a pointer cursor (native <button> doesn't by default) */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+label[for],
+summary {
+  cursor: pointer;
+}
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
 }
 
 /* Accordion */
-details summary {
-  cursor: pointer;
-  list-style: none;
-}
+details summary { cursor: pointer; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
 
-details summary::-webkit-details-marker {
-  display: none;
-}
-
-/* Gold decorative underline for section headings */
+/* Violet decorative underline for section headings */
 .gold-underline::after {
   content: "";
   display: block;
-  width: 40px;
+  width: 44px;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   border-radius: 2px;
   margin: 12px auto 0;
+}
+
+/* ---------- Aurora treatments (pure CSS, no libraries) ---------- */
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2), var(--accent-bright));
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradmove 6s linear infinite;
+}
+@keyframes gradmove { to { background-position: 220% center; } }
+
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+@property --trail {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.border-trail { position: relative; }
+.border-trail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: conic-gradient(from var(--trail), transparent 55%, var(--accent-bright), var(--accent-2), transparent 92%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: trail 5s linear infinite;
+  pointer-events: none;
+}
+@keyframes trail { to { --trail: 360deg; } }
+
+/* Confident-phrases ticker */
+.ticker-mask {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Scroll-reveal (paired with components/ui/Reveal.tsx) */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in-view { opacity: 1; transform: none; }
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); }
+  70% { box-shadow: 0 0 0 11px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main { animation: none; }
+  .text-gradient { animation: none; }
+  .border-trail::before { animation: none; }
+  .ticker-track { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
 }

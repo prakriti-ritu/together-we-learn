@@ -27,7 +27,7 @@ export default function CourseCard({
 
   if (isPopular) {
     return (
-      <div className="rounded-2xl p-6 md:p-7 bg-gradient-to-br from-navy to-navy-light text-white shadow-card ring-1 ring-gold/20 transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-card-hover flex flex-col h-full relative overflow-hidden order-first lg:order-none lg:scale-105 lg:z-10">
+      <div className="rounded-2xl p-6 md:p-7 bg-gradient-to-br from-panel to-panel-2 text-white shadow-card ring-1 ring-gold/20 transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-card-hover flex flex-col h-full relative overflow-hidden order-first lg:order-none lg:scale-105 lg:z-10">
         {/* Popular badge */}
         <span className="absolute top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold to-gold-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-b-lg">
           {popularLabel}

@@ -82,7 +82,7 @@ export default function TransformationToggle() {
       <div className="flex gap-3">
         <button
           onClick={handleToggle}
-          className="flex-1 inline-flex items-center justify-center gap-2 bg-navy text-white font-semibold rounded-xl py-3 min-h-[48px] transition-all duration-250 hover:bg-navy-light hover:scale-[1.02]"
+          className="flex-1 inline-flex items-center justify-center gap-2 bg-panel text-white font-semibold rounded-xl py-3 min-h-[48px] transition-all duration-250 hover:bg-panel-2 hover:scale-[1.02]"
         >
           {revealed ? t("showHindi") : t("transform")}
         </button>

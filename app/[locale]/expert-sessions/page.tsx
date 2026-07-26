@@ -4,7 +4,7 @@ import Card from "@/components/ui/Card";
 import { getExpertSessions, pick, type Locale } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
 export async function generateMetadata({
   params,

@@ -24,7 +24,7 @@ export default function Footer({
   ];
 
   return (
-    <footer className="bg-navy text-white relative pb-20 md:pb-0">
+    <footer className="bg-panel text-white relative pb-20 md:pb-0">
       {/* Gold top accent line */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
       <div className="max-w-7xl mx-auto px-4 py-14 md:py-18">

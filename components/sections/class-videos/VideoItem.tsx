@@ -25,7 +25,7 @@ export default function VideoItem({ title, youtubeUrl, playLabel }: VideoItemPro
 
   if (playing && videoId) {
     return (
-      <div className="aspect-video rounded-2xl overflow-hidden bg-navy">
+      <div className="aspect-video rounded-2xl overflow-hidden bg-panel">
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
           title={title}
@@ -52,14 +52,14 @@ export default function VideoItem({ title, youtubeUrl, playLabel }: VideoItemPro
           Video Thumbnail
         </div>
       )}
-      <div className="absolute inset-0 flex items-center justify-center bg-navy/30 group-hover:bg-navy/40 transition-colors">
+      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
         <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-card">
-          <svg className="w-7 h-7 text-navy ml-1" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-7 h-7 text-accent ml-1" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>
       </div>
-      <p className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-navy/80 to-transparent text-white text-sm font-medium text-left">
+      <p className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent text-white text-sm font-medium text-left">
         {title}
       </p>
     </button>

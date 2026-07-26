@@ -14,11 +14,11 @@ type Tab = "flip" | "build";
  */
 export default function PracticeSection() {
   const t = useTranslations("practice");
-  const [tab, setTab] = useState<Tab>("flip");
+  const [tab, setTab] = useState<Tab>("build");
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "flip", label: t("wordFlip.tab") },
     { key: "build", label: t("sentence.tab") },
+    { key: "flip", label: t("wordFlip.tab") },
   ];
 
   return (
@@ -40,7 +40,7 @@ export default function PracticeSection() {
               onClick={() => setTab(tb.key)}
               className={`px-5 py-2.5 rounded-full text-sm font-semibold min-h-[44px] transition-all ${
                 tab === tb.key
-                  ? "bg-navy text-white shadow-button"
+                  ? "bg-panel text-white shadow-button"
                   : "bg-card-white text-text-secondary border border-border-warm hover:text-navy"
               }`}
             >

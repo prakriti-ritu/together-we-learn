@@ -53,7 +53,7 @@ export default async function TrustStrip() {
         ];
 
   return (
-    <section className="bg-navy py-10 relative">
+    <section className="bg-panel py-10 relative">
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">

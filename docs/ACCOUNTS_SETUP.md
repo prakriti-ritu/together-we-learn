@@ -76,7 +76,7 @@ More detail: [features/contact-form.md](./features/contact-form.md).
 
 ## 5. Upstash Redis — spam protection (optional)
 
-Rate-limits the contact form to 5 submissions per hour per visitor. Only matters once you start getting spam.
+Rate-limits the contact form to 3 submissions per hour per visitor. Only matters once you start getting spam.
 
 1. Create a free account at <https://upstash.com>.
 2. **Create Database** (Redis) → choose a nearby region.

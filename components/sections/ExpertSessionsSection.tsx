@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
+import ClampText from "@/components/ui/ClampText";
 import { getExpertSessions, pick, type Locale } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -63,7 +64,13 @@ export default async function ExpertSessionsSection() {
                 {session.date}
               </div>
               <h3 className="font-serif text-xl font-bold text-navy mb-2">{session.title}</h3>
-              <p className="text-text-secondary text-sm mb-4 flex-1">{session.description}</p>
+              <ClampText
+                text={session.description}
+                className="mb-4 flex-1"
+                pClassName="text-text-secondary text-sm"
+                clampClass="line-clamp-3"
+                words={22}
+              />
               <div className="flex items-center gap-2.5 pt-3 border-t border-gold/15">
                 <SpeakerAvatar name={session.speaker} photoUrl={session.photoUrl} />
                 <span className="text-sm font-medium text-navy">{session.speaker}</span>
