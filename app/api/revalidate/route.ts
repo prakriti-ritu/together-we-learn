@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 /**
  * On-demand revalidation endpoint.
@@ -16,7 +16,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid or missing secret" }, { status: 401 });
   }
 
-  // Revalidate everything under the root layout (all locales + routes).
+  // Purge cached Sanity queries (tag) + re-render all routes under the layout.
+  // `{ expire: 0 }` forces immediate expiration — the right choice for a webhook
+  // (Sanity publish) where the update must be reflected right away.
+  revalidateTag("sanity", { expire: 0 });
   revalidatePath("/", "layout");
 
   return NextResponse.json({ revalidated: true, now: Date.now() });

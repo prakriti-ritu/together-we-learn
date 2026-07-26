@@ -26,7 +26,7 @@ export default async function Achievement() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
           {/* Photo with gold frame */}
           <div className="flex justify-center">
-            <div className="relative">
+            <div className="relative w-full max-w-[520px]">
               <div className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-gold/50 rounded-tl-lg" />
               <div className="absolute -top-3 -right-3 w-8 h-8 border-t-2 border-r-2 border-gold/50 rounded-tr-lg" />
               <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-2 border-l-2 border-gold/50 rounded-bl-lg" />

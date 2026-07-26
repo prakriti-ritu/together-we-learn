@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# seo
+/together-we-learn.vercel.app-audit
+
 # next.js
 /.next/
 /out/

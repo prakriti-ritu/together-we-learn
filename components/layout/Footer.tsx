@@ -29,7 +29,7 @@ export default function Footer({
       {/* Gold top accent line */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
       <div className="max-w-7xl mx-auto px-4 py-14 md:py-18">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
           {/* Brand */}
           <div>
             <h3 className="font-serif text-2xl font-bold mb-2">
@@ -41,7 +41,7 @@ export default function Footer({
           {/* Quick Links */}
           <div>
             <h4 className="font-semibold mb-4">{t("quickLinks")}</h4>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 justify-items-center md:justify-items-start">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -58,7 +58,7 @@ export default function Footer({
           {/* Contact Info */}
           <div>
             <h4 className="font-semibold mb-4">{t("contactInfo")}</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex flex-col items-center md:items-start">
               <li>
                 <a
                   href={telHref(contact.phone)}
