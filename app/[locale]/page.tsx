@@ -38,6 +38,7 @@ export async function generateMetadata({
       languages: {
         en: "/en",
         hi: "/hi",
+        "x-default": "/en",
       },
     },
     openGraph: {
@@ -45,6 +46,11 @@ export async function generateMetadata({
       description: t("description"),
       type: "website",
       locale: locale === "hi" ? "hi_IN" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
     },
   };
 }

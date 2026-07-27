@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-07-27T20:11:28.002Z",
+  "projectRoot": "d:\\Code\\career-to-career",
+  "structure": {
+    "hasPackageJson": true,
+    "hasTsConfig": true,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1785183088003
+}
