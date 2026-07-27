@@ -39,6 +39,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# claude tooling / plugin artifacts (not project code)
+.claude-flow/
+.claude/proven-config.json
+.claude/.proven-config-version
+agentdb.rvf
+agentdb.rvf.lock
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
