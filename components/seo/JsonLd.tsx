@@ -47,7 +47,7 @@ export async function HomePageJsonLd({ locale }: { locale: string }) {
       "@type": "Person",
       name: "Prakriti Keshri",
       jobTitle: "English Teacher",
-      description: "SET-qualified Government College Faculty",
+      description: "SET-qualified College Faculty",
     },
   };
 
