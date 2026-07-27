@@ -6,6 +6,7 @@ import PhoneIcon from "@/components/ui/PhoneIcon";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { getContact } from "@/sanity/lib/fetch";
 import { telHref, waHref } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -14,7 +15,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
-  return { title: t("heading"), description: t("subheading") };
+  return pageMetadata({ locale, path: "/contact", title: t("heading"), description: t("subheading") });
 }
 
 export default async function ContactPage() {
@@ -24,7 +25,7 @@ export default async function ContactPage() {
   return (
     <section className="py-16 md:py-20 bg-cream">
       <div className="max-w-4xl mx-auto px-4">
-        <SectionHeading title={t("heading")} subtitle={t("subheading")} />
+        <SectionHeading title={t("heading")} subtitle={t("subheading")} as="h1" />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           {/* Phone */}

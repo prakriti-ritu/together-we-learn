@@ -2,6 +2,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import VideoItem from "@/components/sections/class-videos/VideoItem";
 import { getClassVideos, pick, type Locale } from "@/sanity/lib/fetch";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
@@ -12,7 +13,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "videosPage" });
-  return { title: t("heading"), description: t("subheading") };
+  return pageMetadata({ locale, path: "/videos", title: t("heading"), description: t("subheading") });
 }
 
 const videoIcon = (
@@ -49,7 +50,7 @@ export default async function VideosPage() {
   return (
     <main className="py-16 md:py-20 bg-cream min-h-screen">
       <div className="max-w-5xl mx-auto px-4">
-        <SectionHeading title={t("heading")} subtitle={t("subheading")} icon={videoIcon} />
+        <SectionHeading title={t("heading")} subtitle={t("subheading")} icon={videoIcon} as="h1" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {videos.map((video) => (
             <VideoItem

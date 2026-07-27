@@ -4,6 +4,9 @@ interface SectionHeadingProps {
   className?: string;
   light?: boolean;
   icon?: React.ReactNode;
+  /** Heading level. Use "h1" for the page's primary heading (standalone pages),
+   *  "h2" (default) for a section on a page that already has an h1. */
+  as?: "h1" | "h2";
 }
 
 export default function SectionHeading({
@@ -12,7 +15,9 @@ export default function SectionHeading({
   className = "",
   light,
   icon,
+  as = "h2",
 }: SectionHeadingProps) {
+  const Heading = as;
   return (
     <div className={`text-center mb-10 md:mb-14 ${className}`}>
       {icon && (
@@ -22,13 +27,13 @@ export default function SectionHeading({
           </div>
         </div>
       )}
-      <h2
+      <Heading
         className={`font-serif text-3xl md:text-4xl font-bold mb-1 tracking-tight gold-underline ${
           light ? "text-white" : "text-navy"
         }`}
       >
         {title}
-      </h2>
+      </Heading>
       {subtitle && (
         <p
           className={`text-lg max-w-2xl mx-auto mt-5 ${
