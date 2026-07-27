@@ -2,6 +2,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SanityImage from "@/components/ui/SanityImage";
 import { getGallery, pick, type Locale } from "@/sanity/lib/fetch";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
@@ -12,7 +13,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "galleryPage" });
-  return { title: t("heading"), description: t("subheading") };
+  return pageMetadata({ locale, path: "/gallery", title: t("heading"), description: t("subheading") });
 }
 
 const cameraIcon = (
@@ -39,7 +40,7 @@ export default async function GalleryPage() {
   return (
     <main className="py-16 md:py-20 bg-cream min-h-screen">
       <div className="max-w-7xl mx-auto px-4">
-        <SectionHeading title={t("heading")} subtitle={t("subheading")} icon={cameraIcon} />
+        <SectionHeading title={t("heading")} subtitle={t("subheading")} icon={cameraIcon} as="h1" />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {items.map((item) => (
             <div

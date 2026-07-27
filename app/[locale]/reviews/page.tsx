@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import ReviewCard from "@/components/ui/ReviewCard";
 import { getReviews, pick, type Locale } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
@@ -13,7 +14,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "reviewsPage" });
-  return { title: t("heading"), description: t("subheading") };
+  return pageMetadata({ locale, path: "/reviews", title: t("heading"), description: t("subheading") });
 }
 
 // Seed reviews shown until the tutor adds real ones in Sanity Studio.
@@ -58,7 +59,7 @@ export default async function ReviewsPage() {
   return (
     <section className="py-16 md:py-20 bg-cream min-h-screen">
       <div className="max-w-6xl mx-auto px-4">
-        <SectionHeading title={t("heading")} subtitle={t("subheading")} />
+        <SectionHeading title={t("heading")} subtitle={t("subheading")} as="h1" />
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-5">
           {reviews.map((review) => (
             <ReviewCard

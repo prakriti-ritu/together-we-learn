@@ -3,7 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import CourseCard from "@/components/ui/CourseCard";
 import { getCourses, getContact, pick, type Locale } from "@/sanity/lib/fetch";
 
-export default async function CoursesSection() {
+export default async function CoursesSection({ asH1 = false }: { asH1?: boolean } = {}) {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("courses");
   const [sanityCourses, contact] = await Promise.all([getCourses(), getContact()]);
@@ -30,7 +30,7 @@ export default async function CoursesSection() {
   return (
     <section className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-4">
-        <SectionHeading title={t("heading")} subtitle={t("subheading")} />
+        <SectionHeading title={t("heading")} subtitle={t("subheading")} as={asH1 ? "h1" : "h2"} />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-5 max-w-5xl mx-auto items-center">
           {courses.map((course) => (
             <CourseCard
