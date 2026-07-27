@@ -93,7 +93,7 @@
   --color-whatsapp-light: #25D366;
 
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-serif: var(--font-cormorant), "Deva Serif Match", Georgia, serif;
   --font-hindi: var(--font-mukta), sans-serif;
 
   --shadow-card: var(--shadow-card-val);
@@ -116,10 +116,30 @@ body {
 
 html { scroll-behavior: smooth; }
 
-/* Hindi locale — use Mukta for all text so Hinglish looks uniform */
+/* Hindi locale — use Mukta for all text so Hinglish looks uniform.
+   Note: the --font-serif override here only affects raw `font-family: var(--font-serif)`
+   usages (like <body>); the `.font-serif` Tailwind utility inlines its value from
+   @theme, so serif headings stay Cormorant. The @font-face below keeps their
+   Devanagari glyphs the right size. */
 body.font-hindi {
   --font-sans: var(--font-mukta), sans-serif;
   --font-serif: var(--font-mukta), sans-serif;
+}
+
+/* Devanagari fallback for the Cormorant serif. Cormorant has no Devanagari, so
+   Hindi glyphs in serif headings fell back to a system font that renders larger
+   than the Latin letters. Scope a local Devanagari font to just those codepoints
+   and shrink it with `size-adjust` so it matches Cormorant's smaller cap-height.
+   No web font is downloaded — this uses fonts already on the device. Tune
+   `size-adjust` if Hindi still looks a touch big/small. */
+@font-face {
+  font-family: "Deva Serif Match";
+  src: local("Noto Serif Devanagari"), local("Nirmala UI"),
+       local("Kohinoor Devanagari"), local("Noto Sans Devanagari"),
+       local("Mangal");
+  unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF, U+200C-200D, U+20B9;
+  size-adjust: 80%;
+  font-display: swap;
 }
 
 /* Page transition */

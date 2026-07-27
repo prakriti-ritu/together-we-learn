@@ -5,5 +5,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  // Next's data cache (see `safe()` in lib/fetch.ts) handles caching + on-demand
+  // revalidation, so we bypass Sanity's CDN to avoid double-caching stale content.
+  useCdn: false,
 });

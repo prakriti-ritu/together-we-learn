@@ -4,7 +4,15 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["en", "hi"];
-  const routes = ["", "/courses", "/reviews", "/expert-sessions", "/contact"];
+  const routes = [
+    "",
+    "/courses",
+    "/reviews",
+    "/gallery",
+    "/videos",
+    "/expert-sessions",
+    "/contact",
+  ];
 
   const entries: MetadataRoute.Sitemap = [];
 

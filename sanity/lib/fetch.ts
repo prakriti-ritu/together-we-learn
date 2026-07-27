@@ -120,10 +120,21 @@ export function pick(
   return value[locale] || value.en || value.hi || fallback;
 }
 
-/** Run a Sanity query but never throw — return `fallback` on any failure. */
+/**
+ * Run a Sanity query but never throw — return `fallback` on any failure.
+ *
+ * Results are stored in Next's data cache (revalidated once a day, tagged
+ * "sanity") so repeated requests — e.g. refreshing a page — reuse the cached
+ * response instead of re-hitting the Sanity API every time. Publishing content
+ * purges the cache instantly via the `sanity` tag (see `/api/revalidate`).
+ */
 async function safe<T>(query: string, fallback: T): Promise<T> {
   try {
-    return await client.fetch<T>(query);
+    return await client.fetch<T>(
+      query,
+      {},
+      { next: { revalidate: 86400, tags: ["sanity"] } }
+    );
   } catch {
     return fallback;
   }

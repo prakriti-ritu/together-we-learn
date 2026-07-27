@@ -1,20 +1,35 @@
+import { getTranslations } from "next-intl/server";
 import { SITE } from "@/lib/site";
+import { getFaqs, pick, type Locale } from "@/sanity/lib/fetch";
 
 interface JsonLdProps {
   data: Record<string, unknown>;
 }
 
 export default function JsonLd({ data }: JsonLdProps) {
+  // Escape `<` so no value (e.g. Sanity-authored FAQ text) can inject a closing
+  // </script> tag and break out of the JSON-LD block. This is the standard
+  // XSS-safe way to embed structured data — React can't render JSON as children.
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: json }}
     />
   );
 }
 
-export function HomePageJsonLd({ locale }: { locale: string }) {
+export async function HomePageJsonLd({ locale }: { locale: string }) {
   const isHindi = locale === "hi";
+  // Social profiles strengthen entity trust (schema `sameAs`). Only include set ones.
+  const sameAs = [SITE.instagram, SITE.youtube].filter(Boolean);
+
+  const address = {
+    "@type": "PostalAddress",
+    addressLocality: "Ambikapur",
+    addressRegion: "Chhattisgarh",
+    addressCountry: "IN",
+  };
 
   const educationalOrg = {
     "@context": "https://schema.org",
@@ -26,12 +41,8 @@ export function HomePageJsonLd({ locale }: { locale: string }) {
     url: SITE.url,
     telephone: SITE.phone,
     email: SITE.email,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Ambikapur",
-      addressRegion: "Chhattisgarh",
-      addressCountry: "IN",
-    },
+    ...(sameAs.length ? { sameAs } : {}),
+    address,
     founder: {
       "@type": "Person",
       name: "Prakriti Keshri",
@@ -43,40 +54,45 @@ export function HomePageJsonLd({ locale }: { locale: string }) {
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": SITE.url ? `${SITE.url}/#localbusiness` : undefined,
     name: "A Carrier to Career - Spoken English Academy",
+    url: SITE.url,
     telephone: SITE.phone,
     email: SITE.email,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Ambikapur",
-      addressRegion: "Chhattisgarh",
-      addressCountry: "IN",
+    ...(sameAs.length ? { sameAs } : {}),
+    address,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 23.1201,
+      longitude: 83.1955,
     },
+    areaServed: ["Ambikapur", "Chhattisgarh", "India"],
     priceRange: "$$",
     openingHours: "Mo-Sa 09:00-18:00",
   };
 
+  // FAQ schema must match what's on the page (Google's parity rule). Mirror
+  // FAQSection exactly: Sanity FAQs if present, otherwise the message fallback.
+  const [sanityFaqs, t] = await Promise.all([
+    getFaqs(),
+    getTranslations({ locale, namespace: "faq" }),
+  ]);
+  const faqItems =
+    sanityFaqs.length > 0
+      ? sanityFaqs.map((f) => ({
+          q: pick(f.question, locale as Locale),
+          a: pick(f.answer, locale as Locale),
+        }))
+      : (t.raw("questions") as { q: string; a: string }[]);
+
   const faqPage = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Who is this course for?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "This course is designed for Hindi-medium students, working professionals, and anyone who wants to learn spoken English.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How are classes conducted?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "All classes are conducted live online via video call. You just need a smartphone and internet connection.",
-        },
-      },
-    ],
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 
   return (
