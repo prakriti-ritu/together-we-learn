@@ -1,4 +1,5 @@
 import WhatsAppIcon from "./WhatsAppIcon";
+import CourseInfo from "./CourseInfo";
 
 interface CourseCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface CourseCardProps {
   enquireLabel: string;
   whatsappNumber: string;
   courseName: string;
+  description?: string;
 }
 
 export default function CourseCard({
@@ -20,6 +22,7 @@ export default function CourseCard({
   enquireLabel,
   whatsappNumber,
   courseName,
+  description = "",
 }: CourseCardProps) {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     `Hi Ma'am, I'm interested in the ${courseName} course. Please share details.`
@@ -35,7 +38,10 @@ export default function CourseCard({
 
         {/* Title + Duration row */}
         <div className="flex items-start justify-between gap-3 mt-3 mb-4">
-          <h3 className="font-serif text-xl md:text-2xl font-bold text-white">{title}</h3>
+          <div className="flex items-start gap-1.5">
+            <h3 className="font-serif text-xl md:text-2xl font-bold text-white">{title}</h3>
+            <CourseInfo description={description} dark />
+          </div>
           <div className="shrink-0 inline-flex items-center gap-1.5 bg-white/10 rounded-full px-2.5 py-1">
             <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -81,7 +87,10 @@ export default function CourseCard({
     <div className="rounded-2xl p-5 md:p-6 bg-card-white border border-border-warm border-t-[3px] border-t-gold/30 shadow-card transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-card-hover flex flex-col h-full relative overflow-hidden">
       {/* Title + Duration row */}
       <div className="flex items-start justify-between gap-3 mb-4">
-        <h3 className="font-serif text-xl font-bold text-navy">{title}</h3>
+        <div className="flex items-start gap-1.5">
+          <h3 className="font-serif text-xl font-bold text-navy">{title}</h3>
+          <CourseInfo description={description} />
+        </div>
         <div className="shrink-0 inline-flex items-center gap-1.5 bg-cream rounded-full px-2.5 py-1">
           <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
