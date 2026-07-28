@@ -1,8 +1,14 @@
-import { useTranslations } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { getSiteSettings, pick, type Locale } from "@/sanity/lib/fetch";
 
-export default function AboutCourse() {
-  const t = useTranslations("aboutCourse");
+export default async function AboutCourse() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("aboutCourse");
+  const s = await getSiteSettings();
+
+  const heading = pick(s?.aboutCourseHeading, locale, t("heading"));
+  const description = pick(s?.aboutCourseText, locale, t("description"));
 
   const bookIcon = (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -13,9 +19,9 @@ export default function AboutCourse() {
   return (
     <section className="py-16 md:py-20 bg-cream">
       <div className="max-w-3xl mx-auto px-4">
-        <SectionHeading title={t("heading")} icon={bookIcon} />
-        <p className="text-text-secondary text-center leading-relaxed">
-          {t("description")}
+        <SectionHeading title={heading} icon={bookIcon} />
+        <p className="text-text-secondary text-center leading-relaxed whitespace-pre-line">
+          {description}
         </p>
       </div>
     </section>

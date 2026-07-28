@@ -1,5 +1,6 @@
-import { useTranslations } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { getSiteSettings, pick, type Locale } from "@/sanity/lib/fetch";
 
 const pointIcons: React.ReactNode[] = [
   // Graduation cap - Qualified Teacher
@@ -30,14 +31,26 @@ const pointIcons: React.ReactNode[] = [
   </svg>,
 ];
 
-export default function WhyChooseUs() {
-  const t = useTranslations("whyUs");
-  const points = t.raw("points") as { title: string; description: string }[];
+export default async function WhyChooseUs() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("whyUs");
+  const s = await getSiteSettings();
+
+  const heading = pick(s?.whyChooseHeading, locale, t("heading"));
+
+  // Sanity points if the tutor added any; otherwise the built-in i18n points.
+  const sanityPoints = (s?.whyChoosePoints ?? [])
+    .map((p) => ({ title: pick(p.title, locale), description: pick(p.description, locale) }))
+    .filter((p) => p.title || p.description);
+  const points =
+    sanityPoints.length > 0
+      ? sanityPoints
+      : (t.raw("points") as { title: string; description: string }[]);
 
   return (
     <section className="py-16 md:py-20 bg-card-white">
       <div className="max-w-5xl mx-auto px-4">
-        <SectionHeading title={t("heading")} />
+        <SectionHeading title={heading} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {points.map((point, i) => (
             <div key={i} className="flex gap-4">
