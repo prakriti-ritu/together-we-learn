@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-export default function ContactForm() {
+export default function ContactForm({ courses }: { courses?: string[] }) {
   const t = useTranslations("contact");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
@@ -98,9 +98,21 @@ export default function ContactForm() {
           className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
         >
           <option value="">{t("coursePlaceholder")}</option>
-          <option value="1month">{t("courseOptions.1month")}</option>
-          <option value="3months">{t("courseOptions.3months")}</option>
-          <option value="1monthAdv">{t("courseOptions.1monthAdv")}</option>
+          {courses && courses.length > 0 ? (
+            // Courses from Sanity (Studio → Courses). Falls back to the seed
+            // list below only when the tutor hasn't added any yet.
+            courses.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))
+          ) : (
+            <>
+              <option value="1month">{t("courseOptions.1month")}</option>
+              <option value="3months">{t("courseOptions.3months")}</option>
+              <option value="1monthAdv">{t("courseOptions.1monthAdv")}</option>
+            </>
+          )}
           <option value="other">{t("courseOptions.other")}</option>
         </select>
       </div>
