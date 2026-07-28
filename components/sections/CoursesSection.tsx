@@ -16,6 +16,7 @@ export default async function CoursesSection({ asH1 = false }: { asH1?: boolean 
           key: c._id,
           title: pick(c.title, locale),
           duration: pick(c.duration, locale),
+          description: pick(c.description, locale, ""),
           features: (c.features ?? []).map((f) => pick(f, locale)).filter(Boolean),
           isPopular: !!c.isPopular,
         }))
@@ -23,6 +24,7 @@ export default async function CoursesSection({ asH1 = false }: { asH1?: boolean 
           key,
           title: t(`${key}.title`),
           duration: t(`${key}.duration`),
+          description: "",
           features: t.raw(`${key}.features`) as string[],
           isPopular: key === "course3",
         }));
@@ -37,6 +39,7 @@ export default async function CoursesSection({ asH1 = false }: { asH1?: boolean 
               key={course.key}
               title={course.title}
               duration={course.duration}
+              description={course.description}
               features={course.features}
               isPopular={course.isPopular}
               popularLabel={t("mostPopular")}
