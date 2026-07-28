@@ -10,6 +10,7 @@ Documentation for the **A Carrier to Career** spoken-English website (Prakriti K
 | Create every account/service from zero (start here if you have no accounts yet) | [ACCOUNTS_SETUP.md](./ACCOUNTS_SETUP.md) |
 | Set up the Sanity CMS account from scratch | [SANITY_SETUP.md](./SANITY_SETUP.md) |
 | Let the tutor edit website content (no developer) | [CONTENT_EDITING.md](./CONTENT_EDITING.md) |
+| Publish content & make updates go live instantly (webhook setup) | [CONTENT_PUBLISHING.md](./CONTENT_PUBLISHING.md) |
 | Deploy / host the site | [DEPLOYMENT.md](./DEPLOYMENT.md) |
 | Check SEO before launch | [SEO_CHECKLIST.md](./SEO_CHECKLIST.md) |
 

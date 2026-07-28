@@ -51,6 +51,10 @@ export interface SiteSettings {
   achievementCaption?: LocalizedString;
   heroStats?: { value?: string; label?: LocalizedString }[];
   trustStats?: { label?: LocalizedString; value?: string }[];
+  aboutCourseHeading?: LocalizedString;
+  aboutCourseText?: LocalizedString;
+  whyChooseHeading?: LocalizedString;
+  whyChoosePoints?: { title?: LocalizedString; description?: LocalizedString }[];
 }
 
 export interface Course {

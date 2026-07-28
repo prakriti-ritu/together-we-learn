@@ -1,10 +1,10 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/components/sections/ContactForm";
 import DemoBooking from "@/components/sections/DemoBooking";
 import PhoneIcon from "@/components/ui/PhoneIcon";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
-import { getContact } from "@/sanity/lib/fetch";
+import { getContact, getCourses, pick, type Locale } from "@/sanity/lib/fetch";
 import { telHref, waHref } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -19,8 +19,10 @@ export async function generateMetadata({
 }
 
 export default async function ContactPage() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("contact");
-  const contact = await getContact();
+  const [contact, courses] = await Promise.all([getContact(), getCourses()]);
+  const courseNames = courses.map((c) => pick(c.title, locale)).filter(Boolean);
 
   return (
     <section className="py-16 md:py-20 bg-cream">
@@ -69,7 +71,7 @@ export default async function ContactPage() {
           </a>
         </div>
 
-        <ContactForm />
+        <ContactForm courses={courseNames} />
       </div>
       <div className="mt-8">
         <DemoBooking />

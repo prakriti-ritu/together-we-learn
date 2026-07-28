@@ -17,7 +17,11 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   achievementText,
   achievementCaption,
   heroStats,
-  trustStats
+  trustStats,
+  aboutCourseHeading,
+  aboutCourseText,
+  whyChooseHeading,
+  whyChoosePoints
 }`;
 
 export const coursesQuery = groq`*[_type == "course"] | order(order asc){

@@ -117,6 +117,37 @@ export const siteSettings = defineType({
         },
       ],
     }),
+    defineField({
+      name: "aboutCourseHeading",
+      title: "About the Course — Heading",
+      type: "localizedString",
+    }),
+    defineField({
+      name: "aboutCourseText",
+      title: "About the Course — Description",
+      description: "Optional. Overrides the default 'About the Course' paragraph on the homepage.",
+      type: "localizedText",
+    }),
+    defineField({
+      name: "whyChooseHeading",
+      title: "Why Choose Us — Heading",
+      type: "localizedString",
+    }),
+    defineField({
+      name: "whyChoosePoints",
+      title: "Why Choose Us — Points",
+      description: "Optional. Overrides the default 'Why Choose Us' points. Add up to 5 for best layout.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "title", title: "Title", type: "localizedString" },
+            { name: "description", title: "Description", type: "localizedText" },
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
     prepare() {
