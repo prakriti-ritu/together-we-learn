@@ -13,6 +13,15 @@ interface ReviewCardProps {
   featured?: boolean;
   /** When true, uses masonry-friendly classes (break-inside-avoid + margin). When false, uses carousel-friendly classes (h-full, no margin). */
   masonry?: boolean;
+  /** ISO date (YYYY-MM-DD) from Sanity; shown small in the footer if valid. */
+  date?: string;
+}
+
+function formatDate(date?: string): string {
+  if (!date) return "";
+  const d = new Date(date);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 }
 
 /** Reviews longer than this (word count) get clamped with a "Read more" toggle so cards stay aligned. */
@@ -26,9 +35,11 @@ export default function ReviewCard({
   photoUrl,
   featured,
   masonry,
+  date,
 }: ReviewCardProps) {
   const t = useTranslations("reviews");
   const [expanded, setExpanded] = useState(false);
+  const formattedDate = formatDate(date);
 
   const isLong = text.trim().split(/\s+/).length > CLAMP_WORDS;
 
@@ -120,6 +131,15 @@ export default function ReviewCard({
             </p>
           )}
         </div>
+        {formattedDate && (
+          <span
+            className={`ml-auto self-start text-xs whitespace-nowrap ${
+              featured ? "text-white/50" : "text-text-secondary/70"
+            }`}
+          >
+            {formattedDate}
+          </span>
+        )}
       </div>
     </div>
   );

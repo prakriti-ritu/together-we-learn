@@ -31,6 +31,7 @@ export default async function ReviewsSection() {
           text: pick(r.reviewText, locale),
           photoUrl: r.photo ? urlFor(r.photo).width(96).height(96).url() : undefined,
           featured: i === 0,
+          date: r.date,
         }))
       : placeholderReviews.map((r) => ({
           id: r.id,
@@ -40,6 +41,7 @@ export default async function ReviewsSection() {
           text: r.text,
           photoUrl: undefined as string | undefined,
           featured: "featured" in r && (r as { featured?: boolean }).featured,
+          date: undefined as string | undefined,
         }));
 
   return (
@@ -56,6 +58,7 @@ export default async function ReviewsSection() {
                 text={review.text}
                 photoUrl={review.photoUrl}
                 featured={review.featured}
+                date={review.date}
               />
             </div>
           ))}

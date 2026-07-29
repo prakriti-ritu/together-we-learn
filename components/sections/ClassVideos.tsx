@@ -3,6 +3,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import VideoItem from "@/components/sections/class-videos/VideoItem";
 import { getClassVideos, pick, type Locale } from "@/sanity/lib/fetch";
+import { urlFor } from "@/sanity/lib/image";
 
 const videoIcon = (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -13,8 +14,8 @@ const videoIcon = (
 
 // Seed tiles shown until the tutor adds real class videos in Sanity Studio.
 const placeholderVideos = [
-  { id: "1", title: "Class Demo Video 1", youtubeUrl: "" },
-  { id: "2", title: "Class Demo Video 2", youtubeUrl: "" },
+  { id: "1", title: "Class Demo Video 1", youtubeUrl: "", thumbnail: undefined as string | undefined },
+  { id: "2", title: "Class Demo Video 2", youtubeUrl: "", thumbnail: undefined as string | undefined },
 ];
 
 export default async function ClassVideos() {
@@ -28,6 +29,7 @@ export default async function ClassVideos() {
           id: v._id,
           title: pick(v.title, locale),
           youtubeUrl: v.youtubeUrl ?? "",
+          thumbnail: v.thumbnail ? urlFor(v.thumbnail).width(640).height(360).url() : undefined,
         }))
       : placeholderVideos;
 
@@ -42,6 +44,7 @@ export default async function ClassVideos() {
               title={video.title}
               youtubeUrl={video.youtubeUrl}
               playLabel={t("playVideo")}
+              thumbnail={video.thumbnail}
             />
           ))}
         </div>

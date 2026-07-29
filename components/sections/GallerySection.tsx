@@ -15,6 +15,7 @@ export default async function GallerySection() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("gallery");
   const gallery = await getGallery();
+  const showCaption = gallery.length > 0; // don't caption the seed placeholders
 
   const items =
     gallery.length > 0
@@ -37,16 +38,21 @@ export default async function GallerySection() {
         {/* Mobile: horizontal scroll */}
         <div className="gallery-scroll flex gap-4 overflow-x-auto pb-4 md:hidden -mx-4 px-4">
           {items.map((item) => (
-            <div key={item.id} className="shrink-0 w-72">
+            <div key={item.id} className="shrink-0 w-72 relative rounded-2xl overflow-hidden">
               <SanityImage
                 source={item.image}
                 alt={item.caption}
                 width={288}
                 height={216}
                 sizes="288px"
-                className="w-72 aspect-[4/3] rounded-2xl object-cover"
+                className="w-72 aspect-[4/3] object-cover"
                 placeholderLabel={item.caption}
               />
+              {showCaption && item.caption && (
+                <p className="absolute bottom-0 left-0 right-0 px-3 py-2.5 bg-gradient-to-t from-black/75 to-transparent text-white text-xs font-medium">
+                  {item.caption}
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -56,7 +62,7 @@ export default async function GallerySection() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-card hover:-translate-y-1"
+              className="relative rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-card hover:-translate-y-1"
             >
               <SanityImage
                 source={item.image}
@@ -64,9 +70,14 @@ export default async function GallerySection() {
                 width={400}
                 height={300}
                 sizes="(max-width: 1024px) 50vw, 25vw"
-                className="w-full aspect-[4/3] rounded-2xl object-cover"
+                className="w-full aspect-[4/3] object-cover"
                 placeholderLabel={item.caption}
               />
+              {showCaption && item.caption && (
+                <p className="absolute bottom-0 left-0 right-0 px-3 py-2.5 bg-gradient-to-t from-black/75 to-transparent text-white text-sm font-medium">
+                  {item.caption}
+                </p>
+              )}
             </div>
           ))}
         </div>
