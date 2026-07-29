@@ -30,6 +30,7 @@ function initials(name: string) {
 export default async function ExpertSessionsPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("expertSessionsPage");
+  const tc = await getTranslations("expertSessions");
   const sanitySessions = await getExpertSessions();
 
   const sessions =
@@ -41,8 +42,13 @@ export default async function ExpertSessionsPage() {
           date: s.date ?? "",
           speaker: s.speaker ?? "Guest Speaker",
           photoUrl: s.photo ? urlFor(s.photo).width(72).height(72).url() : undefined,
+          videoUrl: s.videoUrl ?? "",
         }))
-      : placeholderSessions.map((s) => ({ ...s, photoUrl: undefined as string | undefined }));
+      : placeholderSessions.map((s) => ({
+          ...s,
+          photoUrl: undefined as string | undefined,
+          videoUrl: "",
+        }));
 
   return (
     <section className="py-16 md:py-20 bg-cream">
@@ -67,6 +73,19 @@ export default async function ExpertSessionsPage() {
                 )}
                 <span className="text-sm font-medium text-navy">{session.speaker}</span>
               </div>
+              {session.videoUrl && (
+                <a
+                  href={session.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center justify-center gap-2 w-full rounded-xl bg-gold text-white text-sm font-semibold py-2.5 shadow-button hover:bg-gold-light transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  {tc("watchNow")}
+                </a>
+              )}
             </Card>
           ))}
         </div>

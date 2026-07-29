@@ -2,6 +2,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import VideoItem from "@/components/sections/class-videos/VideoItem";
 import { getClassVideos, pick, type Locale } from "@/sanity/lib/fetch";
+import { urlFor } from "@/sanity/lib/image";
 import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
@@ -24,12 +25,12 @@ const videoIcon = (
 );
 
 const placeholderVideos = [
-  { id: "1", title: "Class Demo Video 1", youtubeUrl: "" },
-  { id: "2", title: "Class Demo Video 2", youtubeUrl: "" },
-  { id: "3", title: "Class Demo Video 3", youtubeUrl: "" },
-  { id: "4", title: "Class Demo Video 4", youtubeUrl: "" },
-  { id: "5", title: "Student Practice Session", youtubeUrl: "" },
-  { id: "6", title: "Grammar Workshop", youtubeUrl: "" },
+  { id: "1", title: "Class Demo Video 1", youtubeUrl: "", thumbnail: undefined as string | undefined },
+  { id: "2", title: "Class Demo Video 2", youtubeUrl: "", thumbnail: undefined as string | undefined },
+  { id: "3", title: "Class Demo Video 3", youtubeUrl: "", thumbnail: undefined as string | undefined },
+  { id: "4", title: "Class Demo Video 4", youtubeUrl: "", thumbnail: undefined as string | undefined },
+  { id: "5", title: "Student Practice Session", youtubeUrl: "", thumbnail: undefined as string | undefined },
+  { id: "6", title: "Grammar Workshop", youtubeUrl: "", thumbnail: undefined as string | undefined },
 ];
 
 export default async function VideosPage() {
@@ -44,6 +45,7 @@ export default async function VideosPage() {
           id: v._id,
           title: pick(v.title, locale),
           youtubeUrl: v.youtubeUrl ?? "",
+          thumbnail: v.thumbnail ? urlFor(v.thumbnail).width(640).height(360).url() : undefined,
         }))
       : placeholderVideos;
 
@@ -58,6 +60,7 @@ export default async function VideosPage() {
               title={video.title}
               youtubeUrl={video.youtubeUrl}
               playLabel={playLabel}
+              thumbnail={video.thumbnail}
             />
           ))}
         </div>

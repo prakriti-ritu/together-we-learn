@@ -13,15 +13,17 @@ interface VideoItemProps {
   title: string;
   youtubeUrl: string;
   playLabel: string;
+  /** Custom thumbnail (from Sanity). Falls back to the YouTube auto-thumbnail. */
+  thumbnail?: string;
 }
 
 /** A single lazy YouTube tile: shows the thumbnail, swaps to an iframe on tap. */
-export default function VideoItem({ title, youtubeUrl, playLabel }: VideoItemProps) {
+export default function VideoItem({ title, youtubeUrl, playLabel, thumbnail }: VideoItemProps) {
   const [playing, setPlaying] = useState(false);
   const videoId = getYouTubeId(youtubeUrl);
-  const thumbnailUrl = videoId
-    ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-    : null;
+  const thumbnailUrl =
+    thumbnail ||
+    (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null);
 
   if (playing && videoId) {
     return (

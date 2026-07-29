@@ -27,6 +27,7 @@ export default async function GalleryPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("galleryPage");
   const gallery = await getGallery();
+  const showCaption = gallery.length > 0; // don't caption the seed placeholders
 
   const items =
     gallery.length > 0
@@ -45,7 +46,7 @@ export default async function GalleryPage() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-card hover:-translate-y-1"
+              className="relative rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-card hover:-translate-y-1"
             >
               <SanityImage
                 source={item.image}
@@ -53,9 +54,14 @@ export default async function GalleryPage() {
                 width={400}
                 height={300}
                 sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="w-full aspect-[4/3] rounded-2xl object-cover"
+                className="w-full aspect-[4/3] object-cover"
                 placeholderLabel={item.caption}
               />
+              {showCaption && item.caption && (
+                <p className="absolute bottom-0 left-0 right-0 px-3 py-2.5 bg-gradient-to-t from-black/75 to-transparent text-white text-sm font-medium">
+                  {item.caption}
+                </p>
+              )}
             </div>
           ))}
         </div>
