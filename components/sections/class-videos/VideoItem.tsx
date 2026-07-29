@@ -48,7 +48,17 @@ export default function VideoItem({ title, youtubeUrl, playLabel, thumbnail }: V
     >
       {thumbnailUrl ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={thumbnailUrl} alt={title} className="w-full h-full object-cover" loading="lazy" />
+        // Explicit dimensions match the YouTube hqdefault.jpg natural size; the
+        // fixed aspect-video parent + object-cover already control the visual
+        // box (also applies safely to a custom Sanity thumbnail, if set).
+        <img
+          src={thumbnailUrl}
+          alt={title}
+          width={480}
+          height={360}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
       ) : (
         <div className="w-full h-full flex items-center justify-center text-text-secondary/50">
           Video Thumbnail

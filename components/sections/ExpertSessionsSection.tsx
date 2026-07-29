@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getTranslations, getLocale } from "next-intl/server";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ClampText from "@/components/ui/ClampText";
@@ -16,8 +17,16 @@ function SpeakerAvatar({ name, photoUrl }: { name: string; photoUrl?: string }) 
   const initials = name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2);
   if (photoUrl) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img src={photoUrl} alt={name} className="w-9 h-9 rounded-full object-cover ring-2 ring-gold/20" loading="lazy" />
+      <Image
+        src={photoUrl}
+        alt={name}
+        // Intrinsic size matches the Sanity asset fetched at urlFor(...).width(72).height(72)
+        // (retina-safe 2x for the 36px display box below).
+        width={72}
+        height={72}
+        sizes="36px"
+        className="w-9 h-9 rounded-full object-cover ring-2 ring-gold/20"
+      />
     );
   }
   return (

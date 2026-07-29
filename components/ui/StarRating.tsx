@@ -14,6 +14,7 @@ export default function StarRating({ rating, className = "" }: StarRatingProps) 
   return (
     <div
       className={`flex gap-0.5 ${className}`}
+      role="img"
       aria-label={`${rating} out of 5 stars`}
     >
       {[0, 1, 2, 3, 4].map((i) => {

@@ -98,10 +98,10 @@ export default function Footer({
         </div>
 
         <div className="mt-10 pt-8 border-t border-white/10 text-center">
-          <p className="text-white/50 text-sm">
+          <p className="text-white/70 text-sm">
             &copy; {new Date().getFullYear()} {t("copyright")}
           </p>
-          <p className="text-white/30 text-xs mt-1">{t("madeWith")}</p>
+          <p className="text-white/70 text-xs mt-1">{t("madeWith")}</p>
 
           {/* Developer credit + contact (mailto with clipboard fallback) */}
           <DevContact />

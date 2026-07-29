@@ -69,7 +69,7 @@ export default function ContactForm({ courses }: { courses?: string[] }) {
             type="text"
             required
             placeholder={t("namePlaceholder")}
-            className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+            className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
           />
         </div>
         <div>
@@ -82,7 +82,7 @@ export default function ContactForm({ courses }: { courses?: string[] }) {
             type="tel"
             required
             placeholder={t("phonePlaceholder")}
-            className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+            className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
           />
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function ContactForm({ courses }: { courses?: string[] }) {
           name="message"
           rows={4}
           placeholder={t("messagePlaceholder")}
-          className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent resize-none"
+          className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent resize-none"
         />
       </div>
 

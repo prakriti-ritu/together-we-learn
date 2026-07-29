@@ -188,9 +188,11 @@ details summary::-webkit-details-marker { display: none; }
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradmove 6s linear infinite;
+  /* Static gradient — was an animated background-position shimmer, which paints
+     every frame (non-composited) with no scored Lighthouse benefit; a truly
+     composited shimmer would need a separate transform-animated sheen layer,
+     not worth the complexity for a subheadline. */
 }
-@keyframes gradmove { to { background-position: 220% center; } }
 
 .glow-blob {
   position: absolute;
@@ -242,16 +244,29 @@ details summary::-webkit-details-marker { display: none; }
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.in-view { opacity: 1; transform: none; }
 
-@keyframes pulse-dot {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); }
-  70% { box-shadow: 0 0 0 11px transparent; }
-  100% { box-shadow: 0 0 0 0 transparent; }
+/* Composited pulse ring (transform + opacity only, no per-frame paint) — was a
+   spreading box-shadow, which repaints every frame. The dot itself stays
+   static; a pseudo-element ring scales and fades behind it. */
+.pulse-dot { position: relative; }
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse-ring 2s infinite;
+  pointer-events: none;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  70% { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   main { animation: none; }
-  .text-gradient { animation: none; }
   .border-trail::before { animation: none; }
   .ticker-track { animation: none; }
+  .pulse-dot::after { animation: none; opacity: 0; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
