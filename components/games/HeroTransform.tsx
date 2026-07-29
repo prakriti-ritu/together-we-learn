@@ -41,7 +41,7 @@ export default function HeroTransform() {
     <div className="border-trail glass rounded-3xl shadow-card p-6 md:p-8 w-full max-w-2xl mx-auto text-left">
       <div className="flex items-center justify-between mb-6">
         <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-text-secondary">
-          <span className="w-2 h-2 rounded-full bg-gold" style={{ animation: "pulse-dot 2s infinite" }} />
+          <span className="pulse-dot w-2 h-2 rounded-full bg-gold" />
           {t("live")}
         </span>
         <span aria-hidden="true" className="text-text-secondary">🎙</span>

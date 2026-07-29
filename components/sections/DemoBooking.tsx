@@ -71,12 +71,12 @@ export default function DemoBooking() {
               <div>
                 <label htmlFor="demo-name" className="block text-sm font-medium text-navy mb-1.5">{t("nameLabel")}</label>
                 <input id="demo-name" name="name" type="text" required placeholder={t("namePlaceholder")}
-                  className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" />
+                  className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" />
               </div>
               <div>
                 <label htmlFor="demo-phone" className="block text-sm font-medium text-navy mb-1.5">{t("phoneLabel")}</label>
                 <input id="demo-phone" name="phone" type="tel" required placeholder={t("phonePlaceholder")}
-                  className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" />
+                  className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" />
               </div>
             </div>
             <div>

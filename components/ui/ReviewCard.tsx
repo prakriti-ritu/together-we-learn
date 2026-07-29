@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import StarRating from "./StarRating";
 
@@ -93,14 +94,17 @@ export default function ReviewCard({
         }`}
       >
         {photoUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={photoUrl}
             alt={name}
+            // Intrinsic size matches the Sanity asset fetched at width(96).height(96)
+            // (retina-safe 2x for the 44px display box below).
+            width={96}
+            height={96}
+            sizes="44px"
             className={`w-11 h-11 rounded-full object-cover ring-2 ${
               featured ? "ring-gold/30" : "ring-gold/20"
             }`}
-            loading="lazy"
           />
         ) : (
           <div
@@ -134,7 +138,7 @@ export default function ReviewCard({
         {formattedDate && (
           <span
             className={`ml-auto self-start text-xs whitespace-nowrap ${
-              featured ? "text-white/50" : "text-text-secondary/70"
+              featured ? "text-white/70" : "text-text-secondary"
             }`}
           >
             {formattedDate}
