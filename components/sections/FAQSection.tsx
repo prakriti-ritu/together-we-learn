@@ -20,12 +20,8 @@ export default async function FAQSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Left — heading + CTA */}
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center text-gold mb-6">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
+            <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center text-gold text-3xl font-bold mb-6">
+              ?
             </div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy mb-4 tracking-tight">
               {t("heading")}
@@ -46,8 +42,12 @@ export default async function FAQSection() {
             </div>
           </div>
 
-          {/* Right — accordion */}
-          <FaqAccordion questions={questions} />
+          {/* Right — accordion. lg:self-center vertically centers this column against
+              the left column's height, regardless of how many questions there are
+              (1 question no longer sits pinned to the top of a taller left column). */}
+          <div className="lg:self-center">
+            <FaqAccordion questions={questions} />
+          </div>
         </div>
       </div>
     </section>

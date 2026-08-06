@@ -36,7 +36,7 @@ export default async function Hero() {
 
       <div className="max-w-4xl mx-auto px-4 pt-14 md:pt-24 pb-10 relative text-center">
         <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-text-secondary mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+          <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-gold" />
           {t("eyebrow")}
         </span>
 

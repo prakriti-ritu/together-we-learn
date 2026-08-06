@@ -42,8 +42,7 @@ yarn-error.log*
 # claude tooling / plugin artifacts (not project code)
 .claude-flow/
 graphify-out/
-.claude/proven-config.json
-.claude/.proven-config-version
+.claude/
 agentdb.rvf
 agentdb.rvf.lock
 

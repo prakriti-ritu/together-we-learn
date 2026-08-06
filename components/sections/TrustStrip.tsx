@@ -53,7 +53,7 @@ export default async function TrustStrip() {
         ];
 
   return (
-    <section className="bg-panel py-10 relative">
+    <section className="bg-gold/10 py-10 relative">
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
@@ -61,13 +61,13 @@ export default async function TrustStrip() {
             <div
               key={stat.key + i}
               className={`flex flex-col items-center text-center gap-3 ${
-                i < stats.length - 1 ? "md:border-r md:border-white/10" : ""
+                i < stats.length - 1 ? "md:border-r md:border-gold/20" : ""
               }`}
             >
               <div className="w-12 h-12 rounded-full border-2 border-gold/30 flex items-center justify-center text-gold">
                 {icons[stat.key] ?? icons.gold}
               </div>
-              <span className="text-white font-semibold text-sm md:text-base">
+              <span className="text-navy font-semibold text-sm md:text-base">
                 {stat.label}
               </span>
             </div>

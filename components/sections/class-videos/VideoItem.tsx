@@ -66,7 +66,9 @@ export default function VideoItem({ title, youtubeUrl, playLabel, thumbnail }: V
       )}
       <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
         <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-card">
-          <svg className="w-7 h-7 text-accent ml-1" fill="currentColor" viewBox="0 0 24 24">
+          {/* text-gold (not text-accent, which isn't a defined token and silently
+              inherited the near-white dark-theme ink, making the triangle invisible) */}
+          <svg className="w-7 h-7 text-gold ml-1" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>

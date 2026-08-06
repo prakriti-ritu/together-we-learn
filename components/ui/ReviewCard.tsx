@@ -68,8 +68,12 @@ export default function ReviewCard({
       >
         &ldquo;
       </div>
+      {/* No flex-1 here: in the home-page carousel (a flex row with align-items:stretch),
+          a flex-1 clamp box gets force-grown taller than 5 lines by a taller sibling card,
+          which defeats -webkit-line-clamp (it only truncates on overflow). Sizing to
+          content keeps the clamp working regardless of sibling height. */}
       <p
-        className={`mb-3 leading-relaxed flex-1 ${
+        className={`mb-3 leading-relaxed ${
           featured ? "text-white/90 text-base md:text-lg" : "text-text-secondary"
         } ${isLong && !expanded ? "line-clamp-5" : ""}`}
       >
@@ -87,7 +91,7 @@ export default function ReviewCard({
           {expanded ? t("showLess") : t("readMore")}
         </button>
       )}
-      <StarRating rating={rating} className="mb-5" />
+      <StarRating rating={rating} className="mt-auto mb-5" />
       <div
         className={`flex items-center gap-3 pt-4 border-t ${
           featured ? "border-white/15" : "border-gold/15"
