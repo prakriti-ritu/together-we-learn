@@ -25,11 +25,11 @@ export default function HeroStats({
   if (items.length === 0) return null;
 
   return (
-    <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
+    <div className="mt-14 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 rounded-2xl glass border border-border-warm shadow-card divide-y sm:divide-y-0 sm:divide-x divide-border-warm overflow-hidden">
       {items.map((s, i) => {
         const { to, decimals, suffix } = parseValue(s.value!);
         return (
-          <div key={i}>
+          <div key={i} className="px-6 py-6 text-center">
             <div className="text-4xl md:text-5xl font-bold tracking-tight tabular-nums text-navy">
               <CountUp to={to} decimals={decimals} suffix={suffix} />
             </div>

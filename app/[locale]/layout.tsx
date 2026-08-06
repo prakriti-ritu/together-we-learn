@@ -10,7 +10,7 @@ import MobileStickyBar from "@/components/layout/MobileStickyBar";
 import DemoPopup from "@/components/ui/DemoPopup";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
-import { getContact } from "@/sanity/lib/fetch";
+import { getContact, getSiteSettings } from "@/sanity/lib/fetch";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
-  const contact = await getContact();
+  const [contact, settings] = await Promise.all([getContact(), getSiteSettings()]);
 
   return (
     <html
@@ -47,13 +47,13 @@ export default async function LocaleLayout({
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
         </noscript>
       </head>
-      <body className={`min-h-full flex flex-col ${locale === "hi" ? "font-hindi" : ""}`}>
+      <body className={`min-h-full flex flex-col${locale === "hi" ? " font-hindi" : ""}`}>
         {/* Apply saved theme before first paint (external static file, via next/script) */}
         <Script src="/theme-init.js" strategy="beforeInteractive" />
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale} contact={contact} />
           <main className="flex-1 overflow-x-hidden">{children}</main>
-          <Footer locale={locale} contact={contact} />
+          <Footer locale={locale} contact={contact} logo={settings?.logo} />
           <MobileStickyBar contact={contact} />
           <DemoPopup locale={locale} whatsapp={contact.whatsapp} />
         </NextIntlClientProvider>

@@ -23,7 +23,7 @@ function FAQItem({ item, index }: { item: QA; index: number }) {
         className="w-full flex items-center justify-between p-5 md:p-6 text-left min-h-[48px] group"
         aria-expanded={open}
       >
-        <span className="flex items-start gap-3 pr-4">
+        <span className="flex items-center gap-3 pr-4">
           <span
             className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold transition-colors duration-300 ${
               open ? "bg-gold text-white" : "bg-gold/10 text-gold"
@@ -55,7 +55,7 @@ function FAQItem({ item, index }: { item: QA; index: number }) {
         }`}
       >
         <div className="overflow-hidden">
-          <div className="px-5 pb-5 md:px-6 md:pb-6 ml-10">
+          <div className="px-5 pb-4 md:px-6 md:pb-5">
             <div className="border-l-[3px] border-gold/25 pl-4 text-text-secondary leading-relaxed text-sm md:text-base">
               {item.a}
             </div>

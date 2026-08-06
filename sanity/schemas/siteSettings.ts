@@ -52,12 +52,6 @@ export const siteSettings = defineType({
       type: "localizedText",
     }),
     defineField({
-      name: "heroImage",
-      title: "Hero Image (Teacher Photo)",
-      type: "image",
-      options: { hotspot: true },
-    }),
-    defineField({
       name: "heroClipUrl",
       title: "60-Second Class Clip (YouTube URL)",
       description:

@@ -2,15 +2,19 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import PhoneIcon from "@/components/ui/PhoneIcon";
+import SanityImage from "@/components/ui/SanityImage";
 import { telHref, waHref, type Contact } from "@/lib/site";
 import DevContact from "@/components/layout/DevContact";
+import type { SanityImage as SanityImageType } from "@/sanity/lib/fetch";
 
 export default function Footer({
   locale,
   contact,
+  logo,
 }: {
   locale: string;
   contact: Contact;
+  logo?: SanityImageType;
 }) {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
@@ -32,9 +36,19 @@ export default function Footer({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
           {/* Brand */}
           <div>
-            <h3 className="font-serif text-2xl font-bold mb-2">
-              A Carrier to Career
-            </h3>
+            {logo?.asset?._ref && (
+              <SanityImage
+                source={logo}
+                alt="A Carrier to Career"
+                // Square box (logo is square) — a mismatched rectangular box forces
+                // next/image's intrinsic aspect-ratio and crops/squishes a square source.
+                width={144}
+                height={144}
+                sizes="72px"
+                fit="max"
+                className="h-[4.5rem] w-[4.5rem] object-contain mb-3 mx-auto md:mx-0"
+              />
+            )}
             <p className="text-white/70 text-sm">{t("tagline")}</p>
           </div>
 

@@ -14,6 +14,8 @@ interface SanityImageProps {
   placeholderLabel?: string;
   /** Custom placeholder icon; defaults to a person silhouette. */
   placeholderIcon?: React.ReactNode;
+  /** Crop mode for the fetched asset. "crop" (default) fills width×height; "max" fits within it without cropping — use for logos/wordmarks with a fixed aspect ratio. */
+  fit?: "crop" | "max" | "clip";
 }
 
 const defaultIcon = (
@@ -44,11 +46,12 @@ export default function SanityImage({
   priority,
   placeholderLabel,
   placeholderIcon,
+  fit = "crop",
 }: SanityImageProps) {
   if (source?.asset?._ref) {
     return (
       <Image
-        src={urlFor(source).width(width).height(height).fit("crop").url()}
+        src={urlFor(source).width(width).height(height).fit(fit).url()}
         alt={alt}
         width={width}
         height={height}

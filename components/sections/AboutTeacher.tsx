@@ -27,8 +27,10 @@ export default async function AboutTeacher() {
               <SanityImage
                 source={teacher?.photo}
                 alt={t("name")}
-                width={288}
-                height={352}
+                // Fetched at 2x the display box (retina-safe) so the photo stays sharp on
+                // high-DPR screens instead of upscaling a 1x asset.
+                width={576}
+                height={704}
                 sizes="(max-width: 768px) 256px, 288px"
                 className="w-64 h-80 md:w-72 md:h-88 rounded-2xl object-cover border border-border-warm"
                 placeholderLabel={t("name")}
