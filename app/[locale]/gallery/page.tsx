@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import SanityImage from "@/components/ui/SanityImage";
 import { getGallery, pick, type Locale } from "@/sanity/lib/fetch";
 import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
@@ -40,6 +41,7 @@ export default async function GalleryPage() {
 
   return (
     <main className="py-16 md:py-20 bg-cream min-h-screen">
+      <BreadcrumbJsonLd locale={locale} path="/gallery" name={t("heading")} />
       <div className="max-w-7xl mx-auto px-4">
         <SectionHeading title={t("heading")} subtitle={t("subheading")} icon={cameraIcon} as="h1" />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">

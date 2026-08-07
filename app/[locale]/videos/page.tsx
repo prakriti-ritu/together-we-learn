@@ -4,6 +4,7 @@ import VideoItem from "@/components/sections/class-videos/VideoItem";
 import { getClassVideos, pick, type Locale } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
@@ -51,6 +52,7 @@ export default async function VideosPage() {
 
   return (
     <main className="py-16 md:py-20 bg-cream min-h-screen">
+      <BreadcrumbJsonLd locale={locale} path="/videos" name={t("heading")} />
       <div className="max-w-5xl mx-auto px-4">
         <SectionHeading title={t("heading")} subtitle={t("subheading")} icon={videoIcon} as="h1" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { SITE } from "@/lib/site";
-import { getFaqs, pick, type Locale } from "@/sanity/lib/fetch";
+import { getFaqs, getReviews, getCourses, pick, type Locale } from "@/sanity/lib/fetch";
 
 interface JsonLdProps {
   data: Record<string, unknown>;
@@ -51,6 +51,23 @@ export async function HomePageJsonLd({ locale }: { locale: string }) {
     },
   };
 
+  // Sanity reviews only (not the code seed fallback shown when Sanity is
+  // empty) — marking up placeholder/example testimonials as AggregateRating
+  // would misrepresent them as real customer ratings.
+  const sanityReviews = await getReviews();
+  const aggregateRating =
+    sanityReviews.length > 0
+      ? {
+          "@type": "AggregateRating",
+          ratingValue: (
+            sanityReviews.reduce((sum, r) => sum + (r.rating ?? 0), 0) /
+            sanityReviews.length
+          ).toFixed(1),
+          reviewCount: String(sanityReviews.length),
+          bestRating: "5",
+        }
+      : undefined;
+
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -66,9 +83,12 @@ export async function HomePageJsonLd({ locale }: { locale: string }) {
       latitude: 23.1201,
       longitude: 83.1955,
     },
-    areaServed: ["Ambikapur", "Chhattisgarh", "India"],
+    // Ambikapur is the primary location; Raipur/Bilaspur/Korba are the
+    // secondary cities the FAQ already states classes are open to.
+    areaServed: ["Ambikapur", "Raipur", "Bilaspur", "Korba", "Chhattisgarh", "India"],
     priceRange: "$$",
     openingHours: "Mo-Sa 09:00-18:00",
+    ...(aggregateRating ? { aggregateRating } : {}),
   };
 
   // FAQ schema must match what's on the page (Google's parity rule). Mirror
@@ -102,4 +122,86 @@ export async function HomePageJsonLd({ locale }: { locale: string }) {
       <JsonLd data={faqPage} />
     </>
   );
+}
+
+/** Individual Review items for the /reviews page. Sanity reviews only — see
+ * the note on HomePageJsonLd's aggregateRating for why the seed fallback is
+ * excluded. */
+export async function ReviewsJsonLd({ locale }: { locale: string }) {
+  const sanityReviews = await getReviews();
+  if (sanityReviews.length === 0) return null;
+
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": SITE.url ? `${SITE.url}/#localbusiness` : undefined,
+    review: sanityReviews.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.studentName || "Student" },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(r.rating ?? 5),
+        bestRating: "5",
+      },
+      reviewBody: pick(r.reviewText, locale as Locale),
+      ...(r.date ? { datePublished: r.date } : {}),
+    })),
+  };
+
+  return <JsonLd data={data} />;
+}
+
+/** One Course entity per Sanity course, for the /courses page. Sanity
+ * courses only (same reasoning as reviews — the i18n seed fallback is
+ * developer-authored example copy, not a real course to mark up as one).
+ * `offers` is intentionally omitted: no price is published on the page (the
+ * CTA is "Enquire on WhatsApp"), and Course rich results require offers.price
+ * to be accurate if present at all. */
+export async function CourseJsonLd({ locale }: { locale: string }) {
+  const sanityCourses = await getCourses();
+  if (sanityCourses.length === 0) return null;
+
+  return (
+    <>
+      {sanityCourses.map((c) => {
+        const name = pick(c.title, locale as Locale);
+        const description = pick(c.description, locale as Locale);
+        if (!name) return null;
+        const data = {
+          "@context": "https://schema.org",
+          "@type": "Course",
+          name,
+          ...(description ? { description } : {}),
+          provider: {
+            "@type": "EducationalOrganization",
+            name: "A Carrier to Career - Spoken English Academy",
+            url: SITE.url,
+          },
+        };
+        return <JsonLd key={c._id} data={data} />;
+      })}
+    </>
+  );
+}
+
+/** BreadcrumbList for a non-home page: Home > `name`. */
+export function BreadcrumbJsonLd({
+  locale,
+  path,
+  name,
+}: {
+  locale: string;
+  path: string;
+  name: string;
+}) {
+  const base = SITE.url || "";
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${base}/${locale}` },
+      { "@type": "ListItem", position: 2, name, item: `${base}/${locale}${path}` },
+    ],
+  };
+  return <JsonLd data={data} />;
 }

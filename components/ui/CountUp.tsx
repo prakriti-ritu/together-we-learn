@@ -19,7 +19,11 @@ export default function CountUp({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [value, setValue] = useState(0);
+  // Start at the real final value (not 0) so SSR/no-JS output shows the actual
+  // number instead of a literal "0" that contradicts the stat elsewhere on the
+  // page. The count-up-from-0 effect is applied client-side, after hydration,
+  // once the element scrolls into view.
+  const [value, setValue] = useState(to);
 
   useEffect(() => {
     const el = ref.current;
@@ -33,6 +37,7 @@ export default function CountUp({
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
           io.disconnect();
+          setValue(0);
           const duration = 1500;
           let start: number | null = null;
           const step = (ts: number) => {
