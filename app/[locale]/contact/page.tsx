@@ -7,6 +7,7 @@ import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { getContact, getCourses, pick, type Locale } from "@/sanity/lib/fetch";
 import { telHref, waHref } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -26,6 +27,7 @@ export default async function ContactPage() {
 
   return (
     <section className="py-16 md:py-20 bg-cream">
+      <BreadcrumbJsonLd locale={locale} path="/contact" name={t("heading")} />
       <div className="max-w-4xl mx-auto px-4">
         <SectionHeading title={t("heading")} subtitle={t("subheading")} as="h1" />
 

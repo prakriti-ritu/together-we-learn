@@ -54,7 +54,7 @@ export default function Header({
           <LanguageToggle locale={locale} />
           <a
             href={telHref(contact.phone)}
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-panel text-white shrink-0"
+            className="md:hidden inline-flex items-center justify-center min-h-[48px] min-w-[48px] rounded-full bg-panel text-white shrink-0"
             aria-label={t("callNow")}
           >
             <PhoneIcon className="w-4 h-4" />

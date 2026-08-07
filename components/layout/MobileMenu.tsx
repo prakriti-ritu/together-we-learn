@@ -18,7 +18,7 @@ export default function MobileMenu({ links }: MobileMenuProps) {
     <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-navy"
+        className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] rounded-lg text-navy"
         aria-label="Menu"
         aria-expanded={open}
       >

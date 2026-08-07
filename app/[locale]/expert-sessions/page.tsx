@@ -4,6 +4,7 @@ import Card from "@/components/ui/Card";
 import { getExpertSessions, pick, type Locale } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
@@ -52,6 +53,7 @@ export default async function ExpertSessionsPage() {
 
   return (
     <section className="py-16 md:py-20 bg-cream">
+      <BreadcrumbJsonLd locale={locale} path="/expert-sessions" name={t("heading")} />
       <div className="max-w-7xl mx-auto px-4">
         <SectionHeading title={t("heading")} subtitle={t("subheading")} as="h1" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
