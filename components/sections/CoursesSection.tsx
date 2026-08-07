@@ -24,7 +24,7 @@ export default async function CoursesSection({ asH1 = false }: { asH1?: boolean 
           key,
           title: t(`${key}.title`),
           duration: t(`${key}.duration`),
-          description: "",
+          description: t(`${key}.description`),
           features: t.raw(`${key}.features`) as string[],
           isPopular: key === "course3",
         }));

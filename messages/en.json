@@ -17,7 +17,7 @@
     "theme": "Theme"
   },
   "hero": {
-    "headline": "Spoken English Academy",
+    "headline": "Spoken English Academy in Ambikapur, Chhattisgarh",
     "subheadline": "A Carrier to Career",
     "description": "Learn fluent English from Prakriti Ma'am — SET-qualified College Teacher in Ambikapur. Live online classes designed for Hindi-medium students.",
     "callButton": "Call Now",
@@ -45,6 +45,7 @@
     "course1": {
       "title": "1 Month Course for Basic English",
       "duration": "1 Month",
+      "description": "A focused 1-month course to build basic spoken English confidence — covering grammar basics, vocabulary building, and daily conversation practice, with a certificate on completion.",
       "features": [
         "Basic conversation skills",
         "Daily practice sessions",
@@ -56,6 +57,7 @@
     "course3": {
       "title": "3 Months Course — Basic to Advanced",
       "duration": "3 Months",
+      "description": "Our most complete course — 3 months covering everything from basic to advanced spoken English, including interview preparation, group discussion practice, personality development, and public speaking, with a certificate on completion.",
       "features": [
         "Complete spoken English",
         "Interview preparation",
@@ -68,6 +70,7 @@
     "courseAdv": {
       "title": "1 Month Course for Advanced English",
       "duration": "1 Month",
+      "description": "A 1-month advanced-level course for students who already speak some English and want to sound more fluent and professional — covering advanced fluency training, professional communication, public speaking mastery, and one-on-one mentoring, with a certificate on completion.",
       "features": [
         "Advanced fluency training",
         "Professional communication",

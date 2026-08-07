@@ -17,7 +17,7 @@
     "theme": "थीम"
   },
   "hero": {
-    "headline": "Spoken English Academy",
+    "headline": "अंबिकापुर, छत्तीसगढ़ की Spoken English Academy",
     "subheadline": "A Carrier to Career",
     "description": "प्रकृति Ma'am से English सीखें — SET-Qualified College Teacher, अंबिकापुर। Hindi Medium Students के लिए Special Live Online Classes।",
     "callButton": "अभी Call करें",
@@ -45,6 +45,7 @@
     "course1": {
       "title": "1 Month Course — Basic English",
       "duration": "1 Month",
+      "description": "Basic Spoken English में Confidence बढ़ाने के लिए 1 Month का Focused Course — Grammar Basics, Vocabulary Building, और Daily Conversation Practice के साथ, Course पूरा होने पर Certificate भी मिलेगा।",
       "features": [
         "Basic Conversation Skills",
         "Daily Practice Sessions",
@@ -56,6 +57,7 @@
     "course3": {
       "title": "3 Months Course — Basic to Advanced",
       "duration": "3 Months",
+      "description": "हमारा सबसे Complete Course — 3 Months में Basic से Advanced Spoken English तक सब कुछ, Interview Preparation, Group Discussion Practice, Personality Development, और Public Speaking के साथ, Certificate भी मिलेगा।",
       "features": [
         "Complete Spoken English",
         "Interview Preparation",
@@ -68,6 +70,7 @@
     "courseAdv": {
       "title": "1 Month Course — Advanced English",
       "duration": "1 Month",
+      "description": "उन Students के लिए 1 Month का Advanced-Level Course जो पहले से थोड़ी English बोलते हैं और और Fluent, Professional बनना चाहते हैं — Advanced Fluency Training, Professional Communication, Public Speaking Mastery, और One-on-One Mentoring के साथ, Certificate भी मिलेगा।",
       "features": [
         "Advanced Fluency Training",
         "Professional Communication",
