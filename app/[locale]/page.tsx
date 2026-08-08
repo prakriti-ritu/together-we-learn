@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import dynamic from "next/dynamic";
 import { HomePageJsonLd } from "@/components/seo/JsonLd";
 import Reveal from "@/components/ui/Reveal";
 import Hero from "@/components/sections/Hero";
@@ -9,6 +8,8 @@ import Achievement from "@/components/sections/Achievement";
 import ConfidenceLadder from "@/components/sections/ConfidenceLadder";
 import AboutCourse from "@/components/sections/AboutCourse";
 import CoursesSection from "@/components/sections/CoursesSection";
+import PracticeSection from "@/components/games/PracticeSection";
+import LevelQuiz from "@/components/games/LevelQuiz";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import GallerySection from "@/components/sections/GallerySection";
 import ClassVideos from "@/components/sections/ClassVideos";
@@ -19,19 +20,16 @@ import FAQSection from "@/components/sections/FAQSection";
 import DemoBooking from "@/components/sections/DemoBooking";
 import FinalCTA from "@/components/sections/FinalCTA";
 
-// Below-the-fold, self-contained interactive sections: code-split so their JS
-// doesn't add to the initial page's hydration cost (Lighthouse TBT). ssr:true
-// keeps the server-rendered HTML (and SEO) unchanged — only the client bundle
-// is deferred. The `loading` skeleton reserves the real measured height (desktop,
-// via headless-browser measurement of the live page) so swapping to the real
-// component doesn't shift page content below it — the original guessed heights
-// undershot by 60-90px, which was the dominant cause of a measured 0.33 CLS.
-const PracticeSection = dynamic(() => import("@/components/games/PracticeSection"), {
-  loading: () => <div className="py-16 md:py-20 bg-cream" aria-hidden="true"><div className="max-w-4xl mx-auto px-4 h-[510px] rounded-2xl bg-border-warm/20 animate-pulse" /></div>,
-});
-const LevelQuiz = dynamic(() => import("@/components/games/LevelQuiz"), {
-  loading: () => <div className="py-16 md:py-24 bg-cream" aria-hidden="true"><div className="max-w-xl mx-auto px-4 h-[530px] rounded-2xl bg-border-warm/20 animate-pulse" /></div>,
-});
+// PracticeSection and LevelQuiz were previously next/dynamic-code-split to
+// shave a small amount of TBT. Reverted to static imports: next/dynamic's
+// ssr:true mode wraps the component in a React Suspense boundary, and that
+// boundary resolving after hydration was confirmed (via live layout-shift
+// + DOM-mutation + JS-disabled testing) to trigger a large, deterministic
+// CLS (0.33) misattributed to the footer -- happening regardless of how
+// closely the loading skeleton's height matched the real content. TBT has
+// enough headroom (measured 120-170ms desktop) that trading back the small
+// code-splitting saving is worth eliminating a CLS defect an order of
+// magnitude larger than the "Poor" threshold.
 
 export const revalidate = 86400; // 1 day; publishing triggers instant on-demand revalidation
 
