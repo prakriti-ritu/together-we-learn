@@ -23,7 +23,10 @@ export default function VideoItem({ title, youtubeUrl, playLabel, thumbnail }: V
   const videoId = getYouTubeId(youtubeUrl);
   const thumbnailUrl =
     thumbnail ||
-    (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null);
+    // i.ytimg.com (not img.youtube.com) — same image, but doesn't attach
+    // YouTube's session/login cookies to the thumbnail request. Video
+    // playback below already uses the cookie-safe youtube-nocookie.com.
+    (videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : null);
 
   if (playing && videoId) {
     return (
