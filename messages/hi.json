@@ -7,6 +7,7 @@
     "home": "Home",
     "about": "About",
     "courses": "Courses",
+    "batches": "Batches",
     "reviews": "Reviews",
     "gallery": "Gallery",
     "videos": "Videos",
@@ -138,6 +139,29 @@
       "MSME-Registered Institute"
     ],
     "bio": "प्रकृति केशरी M.A. English (Gold Medalist) हैं और CG SET Qualified हैं। उनके पास दो अलग-अलग Experiences हैं: 7 साल Assistant Professor of English के रूप में, और 5 साल Spoken English Trainer के रूप में। उन्होंने 'A Carrier to Career' इसलिए शुरू किया ताकि Hindi Medium Learners English को सिर्फ Translate न करें — बल्कि सही मायने में समझें और Confidence के साथ बोलें। उनकी Method Practical, Real-life Communication, रोज़ की Speaking Practice और उस Confidence पर Focus करती है जो Career के दरवाज़े खोलता है।"
+  },
+  "batches": {
+    "metaTitle": "आने वाले Batches — Live Online Spoken English",
+    "metaDescription": "हमारे आने वाले और अभी चल रहे Live Online Spoken English Batches देखें — Start Date और Class Timings के साथ। अपनी Seat Book करने के लिए WhatsApp पर Message करें।",
+    "heading": "आने वाले Batches",
+    "subtitle": "नए Live Online Batches — Start Date और Timings के साथ। WhatsApp पर अपनी Seat Book करें — पूछताछ के लिए कोई Payment नहीं।",
+    "statusUpcoming": "आने वाला",
+    "statusRunning": "अभी चल रहा है",
+    "starts": "शुरू",
+    "startsInDays": "{n} दिन में शुरू",
+    "startsTomorrow": "कल शुरू",
+    "startsToday": "आज शुरू",
+    "timing": "Timing",
+    "onlineBadge": "Live Online",
+    "enquireWhatsApp": "WhatsApp पर Seat Book करें",
+    "waMessage": "Hi Ma'am, मैं {batch} Batch join करना चाहता/चाहती हूँ। कृपया Details बताएं।",
+    "emptyHeading": "अभी कोई Batch खुला नहीं है",
+    "emptyText": "नए Batches नियमित रूप से खुलते हैं। WhatsApp पर Message करें, अगला Batch शुरू होते ही हम आपको बता देंगे।",
+    "emptyCta": "अगले Batch के बारे में पूछें",
+    "emptyWaMessage": "Hi Ma'am, मैं जानना चाहता/चाहती हूँ कि अगला Spoken English Batch कब शुरू होगा।",
+    "bannerNew": "नया Batch",
+    "bannerBook": "Seat Book करें",
+    "bannerDismiss": "सूचना बंद करें"
   },
   "faq": {
     "heading": "Frequently Asked Questions",

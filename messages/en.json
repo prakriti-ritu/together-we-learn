@@ -7,6 +7,7 @@
     "home": "Home",
     "about": "About",
     "courses": "Courses",
+    "batches": "Batches",
     "reviews": "Reviews",
     "gallery": "Gallery",
     "videos": "Videos",
@@ -138,6 +139,29 @@
       "MSME-Registered Institute"
     ],
     "bio": "Prakriti Keshri holds an M.A. in English as a Gold Medalist and is CG SET qualified. She brings two distinct strengths: 7 years as an Assistant Professor of English, and 5 years as a spoken-English academy trainer. She founded 'A Carrier to Career' to help Hindi-medium learners truly understand English — not just translate it — and speak with real confidence. Her method focuses on practical, real-life communication, daily speaking practice, and the confidence that opens career opportunities."
+  },
+  "batches": {
+    "metaTitle": "Upcoming Batches — Live Online Spoken English",
+    "metaDescription": "See our upcoming and currently running live online spoken English batches — start dates and class timings. Message us on WhatsApp to book your seat.",
+    "heading": "Upcoming Batches",
+    "subtitle": "New live online batches with start dates and timings. Book your seat on WhatsApp — no payment needed to enquire.",
+    "statusUpcoming": "Upcoming",
+    "statusRunning": "Running now",
+    "starts": "Starts",
+    "startsInDays": "Starts in {n} days",
+    "startsTomorrow": "Starts tomorrow",
+    "startsToday": "Starts today",
+    "timing": "Timing",
+    "onlineBadge": "Live Online",
+    "enquireWhatsApp": "Book your seat on WhatsApp",
+    "waMessage": "Hi Ma'am, I want to join the {batch} batch. Please share the details.",
+    "emptyHeading": "No batch is open right now",
+    "emptyText": "New batches open regularly. Message us on WhatsApp and we'll tell you as soon as the next one starts.",
+    "emptyCta": "Ask about the next batch",
+    "emptyWaMessage": "Hi Ma'am, I want to know when the next spoken English batch starts.",
+    "bannerNew": "New batch",
+    "bannerBook": "Book your seat",
+    "bannerDismiss": "Dismiss announcement"
   },
   "faq": {
     "heading": "Frequently Asked Questions",

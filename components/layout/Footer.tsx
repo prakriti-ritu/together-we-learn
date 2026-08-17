@@ -22,6 +22,7 @@ export default function Footer({
   const quickLinks = [
     { href: `/${locale}`, label: nav("home") },
     { href: `/${locale}/courses`, label: nav("courses") },
+    { href: `/${locale}/batches`, label: nav("batches") },
     { href: `/${locale}/reviews`, label: nav("reviews") },
     { href: `/${locale}/gallery`, label: nav("gallery") },
     { href: `/${locale}/videos`, label: nav("videos") },

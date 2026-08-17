@@ -7,10 +7,12 @@ import { cormorant, jakartaSans, mukta } from "@/lib/fonts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import DemoPopup from "@/components/ui/DemoPopup";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
-import { getContact, getSiteSettings } from "@/sanity/lib/fetch";
+import { getContact, getSiteSettings, getBatches, pick, type Locale } from "@/sanity/lib/fetch";
+import { formatBatchDate } from "@/lib/date";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
@@ -39,7 +41,18 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
-  const [contact, settings] = await Promise.all([getContact(), getSiteSettings()]);
+  const [contact, settings, batches] = await Promise.all([
+    getContact(),
+    getSiteSettings(),
+    getBatches(),
+  ]);
+
+  // Featured batch for the announcement bar: soonest upcoming, else a running
+  // one. `batches` is already ordered by startDate asc and excludes "closed".
+  const featuredBatch =
+    batches.find((b) => b.status === "upcoming") ??
+    batches.find((b) => b.status === "running") ??
+    null;
 
   return (
     <html
@@ -59,6 +72,15 @@ export default async function LocaleLayout({
         {/* Apply saved theme before first paint (external static file, via next/script) */}
         <Script src="/theme-init.js" strategy="beforeInteractive" />
         <NextIntlClientProvider messages={messages}>
+          {featuredBatch && (
+            <AnnouncementBar
+              id={featuredBatch._id}
+              locale={locale}
+              title={pick(featuredBatch.title, locale as Locale)}
+              dateText={formatBatchDate(featuredBatch.startDate, locale)}
+              isRunning={featuredBatch.status === "running"}
+            />
+          )}
           <Header locale={locale} contact={contact} />
           <main className="flex-1 overflow-x-hidden">{children}</main>
           <Footer locale={locale} contact={contact} logo={settings?.logo} />

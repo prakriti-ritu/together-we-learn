@@ -33,6 +33,17 @@ export const coursesQuery = groq`*[_type == "course"] | order(order asc){
   order
 }`;
 
+// Show Upcoming + Running now (Closed batches are hidden). Ordered soonest-first.
+export const batchesQuery = groq`*[_type == "batch" && status != "closed"] | order(startDate asc){
+  _id,
+  title,
+  status,
+  startDate,
+  schedule,
+  seatsTag,
+  order
+}`;
+
 export const reviewsQuery = groq`*[_type == "review"] | order(date desc){
   _id,
   studentName,
