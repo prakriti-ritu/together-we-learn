@@ -6,6 +6,7 @@ import { client } from "./client";
 import {
   siteSettingsQuery,
   coursesQuery,
+  batchesQuery,
   reviewsQuery,
   galleryAllQuery,
   classVideosQuery,
@@ -63,6 +64,18 @@ export interface Course {
   description?: LocalizedString;
   features?: LocalizedString[];
   isPopular?: boolean;
+  order?: number;
+}
+
+export type BatchStatus = "upcoming" | "running" | "closed";
+
+export interface Batch {
+  _id: string;
+  title?: LocalizedString;
+  status?: BatchStatus;
+  startDate?: string;
+  schedule?: LocalizedString;
+  seatsTag?: LocalizedString;
   order?: number;
 }
 
@@ -147,6 +160,7 @@ export const getSiteSettings = cache(() =>
   safe<SiteSettings | null>(siteSettingsQuery, null)
 );
 export const getCourses = cache(() => safe<Course[]>(coursesQuery, []));
+export const getBatches = cache(() => safe<Batch[]>(batchesQuery, []));
 export const getReviews = cache(() => safe<Review[]>(reviewsQuery, []));
 export const getGallery = cache(() => safe<GalleryImage[]>(galleryAllQuery, []));
 export const getClassVideos = cache(() =>

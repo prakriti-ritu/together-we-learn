@@ -59,6 +59,17 @@ Within a few days, `site:together-we-learn.vercel.app` should start returning yo
 
 ---
 
+## ⚡ BONUS — IndexNow (fast indexing on Bing/Yandex — already set up in code)
+Google ignores IndexNow (it needs Search Console, Task 2), but **Bing, Yandex, Seznam, and Naver** index submitted URLs within *hours*. The key file (`public/899e…txt`) and a submit script are already in the repo.
+
+**After this is deployed live**, run once from the project folder:
+```
+node scripts/submit-indexnow.mjs
+```
+It submits all 14 URLs and you're in Bing's queue immediately. Re-run any time you add pages. (Optional but nice: also create a free **Bing Webmaster Tools** account at https://www.bing.com/webmasters and submit the sitemap there too — Bing traffic is small but free and fast.)
+
+---
+
 ## 🟠 TASK 3 — Directory listings (how locals actually search)
 Create a **free listing** on each, using the **exact same** Name / Address / Phone (NAP) as your Google Business Profile — consistency is what builds trust. These are the same sites your competitors rank through:
 

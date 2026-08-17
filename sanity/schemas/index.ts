@@ -1,6 +1,7 @@
 import { localizedString, localizedText } from "./localizedString";
 import { siteSettings } from "./siteSettings";
 import { course } from "./course";
+import { batch } from "./batch";
 import { review } from "./review";
 import { expertSession } from "./expertSession";
 import { galleryImage } from "./galleryImage";
@@ -13,6 +14,7 @@ export const schemaTypes = [
   localizedText,
   siteSettings,
   course,
+  batch,
   review,
   expertSession,
   galleryImage,
