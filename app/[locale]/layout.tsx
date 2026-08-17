@@ -15,6 +15,14 @@ import "@/app/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  // Google Search Console site-ownership verification. Set the env var to the
+  // token from the GSC "HTML tag" method (the `content` value of the
+  // <meta name="google-site-verification"> tag) to verify the property, then
+  // submit the sitemap. Left unset -> no tag is emitted, so this is safe to
+  // ship before the token exists.
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
 
 export default async function LocaleLayout({

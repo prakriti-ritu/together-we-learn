@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { SITE } from "@/lib/site";
-import { getFaqs, getReviews, getCourses, pick, type Locale } from "@/sanity/lib/fetch";
+import { getFaqs, getReviews, getCourses, getSiteSettings, pick, type Locale } from "@/sanity/lib/fetch";
+import { urlFor } from "@/sanity/lib/image";
 
 interface JsonLdProps {
   data: Record<string, unknown>;
@@ -31,6 +32,17 @@ export async function HomePageJsonLd({ locale }: { locale: string }) {
     addressCountry: "IN",
   };
 
+  // Google strongly prefers a logo + image for a local entity / knowledge panel.
+  // logo: the owner's Sanity-uploaded square logo when present. image: the
+  // branded 1200x630 OG route (app/[locale]/opengraph-image.tsx). Both are
+  // absolute URLs (schema requires absolute); fall back gracefully when the
+  // Sanity logo or SITE.url is not set so we never emit a broken/relative URL.
+  const settings = await getSiteSettings();
+  const ogImage = SITE.url ? `${SITE.url}/${locale}/opengraph-image` : undefined;
+  const logoUrl = settings?.logo?.asset?._ref
+    ? urlFor(settings.logo).width(512).height(512).fit("max").url()
+    : ogImage;
+
   const educationalOrg = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -41,6 +53,8 @@ export async function HomePageJsonLd({ locale }: { locale: string }) {
     url: SITE.url,
     telephone: SITE.phone,
     email: SITE.email,
+    ...(logoUrl ? { logo: logoUrl } : {}),
+    ...(ogImage ? { image: ogImage } : {}),
     ...(sameAs.length ? { sameAs } : {}),
     address,
     founder: {
@@ -76,6 +90,8 @@ export async function HomePageJsonLd({ locale }: { locale: string }) {
     url: SITE.url,
     telephone: SITE.phone,
     email: SITE.email,
+    ...(logoUrl ? { logo: logoUrl } : {}),
+    ...(ogImage ? { image: ogImage } : {}),
     ...(sameAs.length ? { sameAs } : {}),
     address,
     geo: {
