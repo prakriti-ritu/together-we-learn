@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/videos",
     "/expert-sessions",
     "/contact",
+    "/privacy",
   ];
 
   const entries: MetadataRoute.Sitemap = [];

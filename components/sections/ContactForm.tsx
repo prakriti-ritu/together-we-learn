@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { getVisitorId } from "@/lib/visitor";
+import ConsentCheckbox from "@/components/ui/ConsentCheckbox";
 
 export default function ContactForm({ courses }: { courses?: string[] }) {
   const t = useTranslations("contact");
@@ -17,6 +19,8 @@ export default function ContactForm({ courses }: { courses?: string[] }) {
       phone: formData.get("phone") as string,
       course: formData.get("course") as string,
       message: formData.get("message") as string,
+      vid: getVisitorId() || undefined, // only present if analytics consent was given
+      consent: true as const, // the required checkbox guarantees this
     };
 
     try {
@@ -129,6 +133,8 @@ export default function ContactForm({ courses }: { courses?: string[] }) {
           className="w-full rounded-xl border border-border-warm bg-cream px-4 py-3 text-navy placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent resize-none"
         />
       </div>
+
+      <ConsentCheckbox id="contact-consent" />
 
       {status === "error" && (
         <p className="text-red-600 text-sm">{t("error")}</p>
