@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import CalendarIcon from "@/components/ui/CalendarIcon";
+import { getVisitorId } from "@/lib/visitor";
+import ConsentCheckbox from "@/components/ui/ConsentCheckbox";
 
 /**
  * Free-demo booking form — the primary lead-conversion element.
@@ -23,6 +25,8 @@ export default function DemoBooking() {
       course: "Free Demo Class",
       preferredTime: (fd.get("preferredTime") as string) || undefined,
       type: "demo" as const,
+      vid: getVisitorId() || undefined, // only present if analytics consent was given
+      consent: true as const, // the required checkbox guarantees this
     };
     try {
       const res = await fetch("/api/contact", {
@@ -90,6 +94,8 @@ export default function DemoBooking() {
                 <option value={t("timeWeekend")}>{t("timeWeekend")}</option>
               </select>
             </div>
+
+            <ConsentCheckbox id="demo-consent" />
 
             {status === "error" && <p className="text-red-600 text-sm">{t("error")}</p>}
 

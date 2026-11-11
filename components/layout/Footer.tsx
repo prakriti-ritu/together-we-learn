@@ -117,6 +117,14 @@ export default function Footer({
             &copy; {new Date().getFullYear()} {t("copyright")}
           </p>
           <p className="text-white/70 text-xs mt-1">{t("madeWith")}</p>
+          <p className="text-white/70 text-xs mt-2 flex items-center justify-center gap-3">
+            <Link href={`/${locale}/privacy`} className="underline underline-offset-2 hover:text-white">
+              {t("privacy")}
+            </Link>
+            <Link href={`/${locale}/privacy#choices`} className="underline underline-offset-2 hover:text-white">
+              {t("privacyChoices")}
+            </Link>
+          </p>
 
           {/* Developer credit + contact (mailto with clipboard fallback) */}
           <DevContact />

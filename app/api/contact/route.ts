@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod/v4";
+import { safeDecode } from "@/lib/analytics";
 
 const contactSchema = z.object({
   name: z.string().min(1).max(100),
@@ -8,6 +9,10 @@ const contactSchema = z.object({
   message: z.string().max(1000).optional(),
   preferredTime: z.string().max(100).optional(),
   type: z.enum(["contact", "demo"]).optional(),
+  // Optional + forgiving: a missing/odd visitor id must never reject a real lead.
+  vid: z.string().regex(/^[a-z0-9-]{8,40}$/i).optional().catch(undefined),
+  // DPDP: explicit, affirmative consent to be contacted is required.
+  consent: z.literal(true),
 });
 
 function escapeHtml(str: string): string {
@@ -31,7 +36,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, phone, course, message, preferredTime, type } = parsed.data;
+    const { name, phone, course, message, preferredTime, type, vid } = parsed.data;
     const isDemo = type === "demo";
 
     // Rate limiting via Upstash (if configured)
@@ -71,6 +76,24 @@ export async function POST(request: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(resendKey);
 
+      // Enrich the lead (location + pages viewed) ONLY if the visitor accepted
+      // analytics - the browser sends `vid` solely in that case. No analytics
+      // consent => none of this is collected or shown, only the form fields.
+      const place = vid
+        ? [safeDecode(request.headers.get("x-vercel-ip-city")), request.headers.get("x-vercel-ip-country") ?? ""]
+            .filter(Boolean)
+            .join(", ")
+        : "";
+      let trail: string[] = [];
+      if (vid) {
+        try {
+          const { getRedis, trailKey } = await import("@/lib/analytics"); // best effort only
+          const r = getRedis();
+          if (r) trail = (await r.lrange<string>(trailKey(vid), 0, 9)).reverse();
+        } catch {}
+      }
+      const pages = trail.map((s) => String(s).split("|")[1]).filter(Boolean);
+
       const row = (icon: string, label: string, value: string) => `
         <tr>
           <td style="padding:10px 0;border-bottom:1px solid #eceef4;width:34px;font-size:18px;vertical-align:top;">${icon}</td>
@@ -96,6 +119,9 @@ export async function POST(request: NextRequest) {
                 ${row("📚", "Course", escapeHtml(course))}
                 ${preferredTime ? row("⏰", "Preferred time", escapeHtml(preferredTime)) : ""}
                 ${message ? row("💬", "Message", escapeHtml(message)) : ""}
+                ${place ? row("📍", "Approx. location", escapeHtml(place)) : ""}
+                ${pages.length ? row("🧭", "Pages viewed before", escapeHtml(pages.join(" → "))) : ""}
+                ${row("✅", "Consent", `Agreed to the Privacy Policy &amp; to be contacted — ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST`)}
               </table>
               <div style="margin-top:18px;text-align:center;">
                 <a href="tel:${escapeHtml(phone)}" style="display:inline-block;background:#5B3FE0;color:#fff;text-decoration:none;font-weight:600;padding:11px 22px;border-radius:10px;font-size:14px;">📞 Call ${escapeHtml(name)}</a>

@@ -9,7 +9,9 @@ import Footer from "@/components/layout/Footer";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import DemoPopup from "@/components/ui/DemoPopup";
-import { Analytics } from "@vercel/analytics/next";
+import VisitTracker from "@/components/layout/VisitTracker";
+import ConsentBanner from "@/components/layout/ConsentBanner";
+import ConsentGatedAnalytics from "@/components/layout/ConsentGatedAnalytics";
 import Script from "next/script";
 import { getContact, getSiteSettings, getBatches, pick, type Locale } from "@/sanity/lib/fetch";
 import { formatBatchDate } from "@/lib/date";
@@ -86,8 +88,10 @@ export default async function LocaleLayout({
           <Footer locale={locale} contact={contact} logo={settings?.logo} />
           <MobileStickyBar contact={contact} />
           <DemoPopup locale={locale} whatsapp={contact.whatsapp} />
+          <ConsentBanner />
         </NextIntlClientProvider>
-        <Analytics />
+        <VisitTracker locale={locale} />
+        <ConsentGatedAnalytics />
       </body>
     </html>
   );

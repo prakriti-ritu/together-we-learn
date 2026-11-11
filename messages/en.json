@@ -270,7 +270,9 @@
     "devHook": "Loved this website?",
     "devBy": "Designed & built by",
     "devCta": "Get one like this",
-    "devCopied": "Email copied!"
+    "devCopied": "Email copied!",
+    "privacy": "Privacy Policy",
+    "privacyChoices": "Privacy choices"
   },
   "reviewsPage": {
     "heading": "Student Reviews",
@@ -367,5 +369,19 @@
     "book": "Book free demo",
     "whatsapp": "WhatsApp us",
     "dismiss": "Close"
+  },
+  "privacyUi": {
+    "bannerTitle": "Your privacy matters",
+    "bannerBody": "With your permission we use a random ID to count visits and see which pages are useful (no name, no phone, no IP address stored). If you are under 18, please ask a parent or guardian — or choose Decline.",
+    "accept": "Accept analytics",
+    "decline": "Decline",
+    "readPolicy": "Read Privacy Policy",
+    "formConsent": "I agree to A Carrier to Career contacting me about my enquiry using the details above, as described in the <link>Privacy Policy</link>. (If I am under 18, my parent/guardian is submitting this form.)",
+    "choicesHeading": "Your analytics choice",
+    "choiceGranted": "Analytics is ON for this browser.",
+    "choiceDenied": "Analytics is OFF for this browser.",
+    "choiceUnset": "You have not made a choice yet. Nothing is tracked until you accept.",
+    "turnOn": "Turn analytics on",
+    "turnOff": "Turn analytics off & delete my data"
   }
 }
