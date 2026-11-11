@@ -382,6 +382,6 @@
     "choiceDenied": "Analytics is OFF for this browser.",
     "choiceUnset": "You have not made a choice yet. Nothing is tracked until you accept.",
     "turnOn": "Turn analytics on",
-    "turnOff": "Turn analytics off & delete my data"
+    "turnOff": "Turn analytics off & delete my browsing trail"
   }
 }
