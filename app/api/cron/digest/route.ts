@@ -35,7 +35,20 @@ export async function GET(request: NextRequest) {
   const lists = await Promise.all(
     days.map((d) => redis.lrange<VisitEvent | string>(eventsKey(d), 0, -1))
   );
-  const all = lists.flat().map((e) => (typeof e === "string" ? (JSON.parse(e) as VisitEvent) : e));
+  // Tolerate bad records: skip anything that isn't a valid event instead of
+  // letting one malformed entry crash the whole weekly report.
+  let skippedBad = 0;
+  const all: VisitEvent[] = [];
+  for (const raw of lists.flat()) {
+    try {
+      const e = typeof raw === "string" ? (JSON.parse(raw) as VisitEvent) : raw;
+      if (e && typeof e.v === "string" && typeof e.p === "string") all.push(e);
+      else skippedBad++;
+    } catch {
+      skippedBad++;
+    }
+  }
+  if (skippedBad) console.warn(`[digest] skipped ${skippedBad} malformed analytics record(s)`);
 
   // Anti-fake-numbers: no real person views 80+ pages in a week. Drop visitor ids
   // that exceed that so one script can't dominate the report (and say so below).
@@ -82,12 +95,18 @@ export async function GET(request: NextRequest) {
   </div>`;
 
   const { Resend } = await import("resend");
-  await new Resend(resendKey).emails.send({
+  // Resend returns { data, error } instead of throwing, so check it explicitly -
+  // otherwise a rejected email would still be reported as "sent".
+  const { error } = await new Resend(resendKey).emails.send({
     from: "A Carrier to Career <onboarding@resend.dev>",
     to,
     subject: `📊 ${visitors.size} visitors, ${events.length} page views this week (${day})`,
     html,
   });
+  if (error) {
+    console.error("[digest] Resend rejected the email:", error.message);
+    return NextResponse.json({ day, sent: false, error: error.message }, { status: 502 });
+  }
 
   return NextResponse.json({ day, sent: true, pageViews: events.length, visitors: visitors.size });
 }
