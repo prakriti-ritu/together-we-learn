@@ -42,7 +42,11 @@ export async function POST(request: NextRequest) {
   try {
     const redis = getRedis();
     const ua = request.headers.get("user-agent") ?? "";
-    if (!redis || isBot(ua) || !isSameOrigin(request) || !ipAllowed(clientIp(request))) return ok();
+    if (!redis) {
+      console.warn("[track] analytics Redis is not configured (missing env vars)");
+      return ok();
+    }
+    if (isBot(ua) || !isSameOrigin(request) || !ipAllowed(clientIp(request))) return ok();
 
     const parsed = schema.safeParse(await request.json());
     if (!parsed.success) return ok();
@@ -78,8 +82,10 @@ export async function POST(request: NextRequest) {
     pipe.ltrim(trail, 0, 14);
     pipe.expire(trail, 30 * 86400);
     await pipe.exec();
-  } catch {
-    // swallow - analytics must never surface errors
+  } catch (err) {
+    // Never surface errors to the visitor, but DO leave a trace in the server
+    // logs (no personal data) so a bad env var or Redis outage is diagnosable.
+    console.error("[track] failed to record page view:", err instanceof Error ? err.message : err);
   }
   return ok();
 }
