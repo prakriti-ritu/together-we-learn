@@ -42,11 +42,7 @@ export async function POST(request: NextRequest) {
   try {
     const redis = getRedis();
     const ua = request.headers.get("user-agent") ?? "";
-    if (!redis) {
-      console.warn("[track] analytics Redis is not configured (missing env vars)");
-      return ok();
-    }
-    if (isBot(ua) || !isSameOrigin(request) || !ipAllowed(clientIp(request))) return ok();
+    if (!redis || isBot(ua) || !isSameOrigin(request) || !ipAllowed(clientIp(request))) return ok();
 
     const parsed = schema.safeParse(await request.json());
     if (!parsed.success) return ok();
